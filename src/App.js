@@ -7,6 +7,9 @@ import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Support from './Pages/Support';
 import Register from './Pages/Register';
+import MaintainCart from './Pages/MaintainCart';
+import MaintainProfile from './Pages/MaintainProfile';
+import MaintainWishlist from './Pages/MaintainWishlist';
 
 function App() {    
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route exact path='/Login' element={< Login />}></Route>     
         <Route exact path='/Support' element={<Support/>}></Route>
         <Route exact path='/Register' element={<Register/>}></Route>
+        <Route exact path='/MaintainCart' element={<MaintainCart/>}></Route>
+        <Route exact path='/MaintainProfile' element={<MaintainProfile/>}></Route>
+        <Route exact path='/MaintainWishlist' element={<MaintainWishlist/>}></Route>
       </Routes>
       </div>     
     )

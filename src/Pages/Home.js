@@ -28,7 +28,7 @@ export default function Home() {
                 </div>
                 {/* right colum with banner, text, three images of products */}
                 <div id="col-right">
-                    <img src={banner} width="1200"/>
+                    <img class="banner" src={banner} width="1000"/>
                 </div>
             </div>
         </div>

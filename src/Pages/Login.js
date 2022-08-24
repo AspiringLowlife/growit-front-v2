@@ -1,5 +1,6 @@
 import React from "react";
 import '../custom.css';
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -19,7 +20,7 @@ export default function Login() {
                   <input type="text" name="password" id="password" class="form-control" />
                 </div>
                 <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Login"></input><br/>
-                <span>New to Grow IT? </span><span id="register-link"><a href="/Register" id="link" >Create an Account</a></span>
+                <span>New to Grow IT? </span><span id="register-link"><Link to="/Register" id="link" >Create an Account</Link></span>
               </form>
             </div>
           </div>

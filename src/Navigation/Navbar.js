@@ -19,15 +19,15 @@ const Navbar = () => {
           </li>
           {/* wishlist */}
           <li>
-            <Link class="nav-link" to="#"><i class="bi bi-heart"></i></Link>
+            <Link class="nav-link" to="/MaintainWishlist"><i class="bi bi-heart"></i></Link>
           </li>
           {/* profile */}
           <li>
-            <Link class="nav-link" to="#"><i class="bi bi-person"></i></Link>
+            <Link class="nav-link" to="/MaintainProfile"><i class="bi bi-person"></i></Link>
           </li>
           {/* cart */}
           <li>
-            <Link class="nav-link" to="#"><i class="bi bi-cart"></i></Link>
+            <Link class="nav-link" to="/MaintainCart"><i class="bi bi-cart"></i></Link>
           </li>
         </ul>
       </div>
