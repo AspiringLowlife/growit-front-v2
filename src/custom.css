@@ -1,0 +1,89 @@
+/* Begining of Navbar CSS */
+
+.navbar .navbar-brand {
+    font-size: 30px;
+    padding-left: 250px;
+}
+
+/* this centers the navbar */
+.navbar-nav {
+    font-size: large;
+    padding-right: 1000px;
+    float: none;
+    margin: 0 auto;
+    display: block;
+    
+}
+
+.navbar-nav>li {
+    display: inline-block;
+    float: none;
+}
+
+.bi-heart::before {
+    color: red;
+}
+
+.background {
+    background-color: #89e289;
+}
+
+/* end of Navbar CSS */
+
+/* Begining of Login Form CSS */
+#login .container #login-row #login-column #login-box {
+    margin-top: 80px;
+    max-width: 1000px;
+    height: 320px;
+    border: 1px solid #9C9C9C;
+    background-color: #e1f7e0;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+.form-group{
+    padding-bottom: 20px;
+}
+
+.btn.btn-info.btn-md {
+    color: aliceblue;
+    background-color: #1fb57a;
+}
+
+#link {
+    color: #1fb57a;
+}
+/* end of login CSS */
+
+/* begining of Register CSS */
+#register .container #login-row #login-column #login-box {
+    margin-top: 80px;
+    max-width: 1000px;
+    height: 680px;
+    border: 1px solid #9C9C9C;
+    background-color: #e1f7e0;
+}
+
+#register .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+/* end of Register CSS */
+
+/* Home CSS */
+#home{
+    display: flex;
+}
+
+#col-left{
+padding-left: 250px;
+}
+
+#col-right{
+    padding-left: 50px;
+}
