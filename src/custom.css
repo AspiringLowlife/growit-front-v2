@@ -1,6 +1,7 @@
 .body{
     padding-left: 250px;
     padding-right: 250px;
+    padding-top: 10px;
 }
 
 /* Begining of Navbar CSS */
@@ -91,4 +92,11 @@
 
 #col-right{
     padding-left: 50px;
+}
+
+#img-col {
+    padding-top: 100px;
+}
+#img-col img{
+    padding-top: 5px;
 }
