@@ -82,20 +82,19 @@
 
 /* Home CSS */
 #home {
-    display: flex;
+    display: flex;    
 }
 
-#col-left {}
-
-#col-right {
-    padding-left: 30px;
+#home-col {
+    padding-right: 30px;
 }
 
 #img-col {
-    padding-top: 100px;
+    padding-top: 150px;
 }
 
 #img-col img {
+    margin-top: auto;
     padding-top: 5px;
 }
 
@@ -103,5 +102,32 @@
     .banner {
         width: 700px;
     }
+}
+
+/* maintainProfile CSS */
+.border.border-success {
+    background-color: #e1f7e0;
+    padding: 0px;
+}
+
+#col-group{
+    display: flex;
+    gap: 2rem;
+    border: 10px solid firebrick;
+    flex-direction: column;
+}
+
+.col {   
     
+}
+#row{    
+    display: flex;
+    
+}
+.sit-right{
+    color: #1fb57a;
+    
+}
+#test{
+    display: flex;
 }

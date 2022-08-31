@@ -11,7 +11,7 @@ export default function Home() {
             <div id="home">
                 {/* left column containing 
                 categories dropdown and 2 images */}
-                <div id="col-left">
+                <div id="home-col">
                     <Dropdown>
                         <Dropdown.Toggle variant="primary" id="dropdown-basic">
                             Categories
@@ -29,7 +29,7 @@ export default function Home() {
                     </div>
                 </div>
                 {/* right colum with banner, text, three images of products */}
-                <div id="col-right">
+                <div id="home-col">
                     <img class="banner" src={banner} width="1000" />
                 </div>
             </div>
