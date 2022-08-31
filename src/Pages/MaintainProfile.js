@@ -6,8 +6,8 @@ export default function MaintainUser() {
         <div className="body">
             <div id="col-group">
                 <div className="col">
-                    <div id="row">                        
-                        <h5>Your Name:</h5>                        
+                    <div id="row">
+                        <h5>Your Name:</h5>
                         <p>asd</p>
                         <a className="sit-right" href="#">Edit</a>
                     </div>
@@ -29,7 +29,7 @@ function ProfileBox(title, info) {
     return (
         //border border-success
         <div id="row ">
-            <h5>{title}:</h5>            
+            <h5>{title}:</h5>
             <p>{info}</p>
             <a className="sit-right" href="#">Edit</a>
         </div>
