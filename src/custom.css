@@ -60,7 +60,7 @@
 }
 
 #link {
-    color: #1fb57a;
+    color: #f25c05;
 }
 
 /* end of login CSS */
@@ -107,27 +107,41 @@
 /* maintainProfile CSS */
 .border.border-success {
     background-color: #e1f7e0;
-    padding: 0px;
+    padding: 15px;
 }
 
-#col-group{
+.col-group{
     display: flex;
-    gap: 2rem;
-    border: 10px solid firebrick;
+    gap: 2rem;    
     flex-direction: column;
 }
 
-.col {   
-    
-}
-#row{    
+.my-col {   
     display: flex;
-    
+    flex-direction: column;
 }
+
+.my-row{    
+    display: flex;
+    gap: 2rem;  
+    justify-content: space-around;
+}
+
+.my-row>*{
+    padding-right:75px ;
+}
+
 .sit-right{
     color: #1fb57a;
     
 }
+
 #test{
     display: flex;
+}
+
+.cart-flex{
+    display: flex;
+    gap:2rem;
+    padding-top: 20px;
 }

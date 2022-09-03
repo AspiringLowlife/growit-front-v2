@@ -1,7 +1,7 @@
 import './App.css';
 import './custom.css'
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Route,Routes} from 'react-router-dom'; 
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './Navigation/Navbar';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
@@ -10,21 +10,23 @@ import Register from './Pages/Register';
 import MaintainCart from './Pages/MaintainCart';
 import MaintainProfile from './Pages/MaintainProfile';
 import MaintainWishlist from './Pages/MaintainWishlist';
+import NotificationContainer from './Notifications/NotificationsContainer';
 
-function App() {    
+function App() {
   return (
-      <div className='App'>
-        <Navbar/>
-        <Routes>
+    <div className='App'>
+      <NotificationContainer/>
+      <Navbar />
+      <Routes>
         <Route exact path='/' element={< Home />}></Route>
-        <Route exact path='/Login' element={< Login />}></Route>     
-        <Route exact path='/Support' element={<Support/>}></Route>
-        <Route exact path='/Register' element={<Register/>}></Route>
-        <Route exact path='/MaintainCart' element={<MaintainCart/>}></Route>
-        <Route exact path='/MaintainProfile' element={<MaintainProfile/>}></Route>
-        <Route exact path='/MaintainWishlist' element={<MaintainWishlist/>}></Route>
+        <Route exact path='/Login' element={< Login />}></Route>
+        <Route exact path='/Support' element={<Support />}></Route>
+        <Route exact path='/Register' element={<Register />}></Route>
+        <Route exact path='/MaintainCart' element={<MaintainCart />}></Route>
+        <Route exact path='/MaintainProfile' element={<MaintainProfile />}></Route>
+        <Route exact path='/MaintainWishlist' element={<MaintainWishlist />}></Route>
       </Routes>
-      </div>     
-    )
+    </div>
+  )
 }
 export default App;

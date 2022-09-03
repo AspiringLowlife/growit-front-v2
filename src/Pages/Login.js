@@ -1,27 +1,58 @@
 import React from "react";
 import '../custom.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosService from "../API/AxiosService";
+import { Button, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function Login() {
+
+  const navigate = useNavigate()
+
+   async function login(data) {
+    const response = await axiosService.login(data)
+    return response
+  }
+  const formSubmission = (event) => {
+    event.preventDefault()
+    let testData = {
+      "username": event.target.elements.username.value,
+      "password": "Password@123",
+    }
+    login(testData).
+      then((response) => {        
+        localStorage.setItem("token", response.data.token)
+        navigate("/")
+        console.log("success")
+        //notification of success
+        toast.success(event.target.elements.username.value+" has signed in")
+      }).catch(
+        (error) => {
+          console.log("Error")
+          //notification of error
+          toast.error("Incorrect Username or password")
+        }
+      )
+  }
   return (
     <div id="login">
       <div class="container">
         <div id="login-row" class="row justify-content-center align-items-center">
           <div id="login-column" class="col-md-6">
             <div id="login-box" class="cold-md-12">
-              <form id="login-form" class="form" action="" method="post">
+              <Form id="login-form" class="form" onSubmit={formSubmission}>
                 <h3 class="text-center">Login</h3>
-                <div class="form-group">
-                  <label for="username" >Username:</label><br />
-                  <input type="text" name="username" id="username" class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="password">Password:</label><br />
-                  <input type="text" name="password" id="password" class="form-control" />
-                </div>
-                <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Login"></input><br/>
+                <Form.Group controlId="usernameGroup" className="form-group">
+                  <Form.Label for="username" >Username:</Form.Label><br />
+                  <Form.Control required type="text" name="username" className="form-control" />
+                </Form.Group>
+                <Form.Group controlId="passwordGroup" className="form-group">
+                  <Form.Label for="password">Password:</Form.Label><br />
+                  <Form.Control type="text" name="password"  class="form-control" />
+                </Form.Group>
+                <Button type="submit" name="submit" className="btn btn-info btn-md" id="but" >Login</Button><br />
                 <span>New to Grow IT? </span><span id="register-link"><Link to="/Register" id="link" >Create an Account</Link></span>
-              </form>
+              </Form>
             </div>
           </div>
         </div>

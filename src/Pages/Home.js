@@ -3,12 +3,12 @@ import '../custom.css';
 import pic from '../Images/ots1.jpg'
 import pic1 from '../Images/Pots.jpg'
 import banner from '../Images/plantBanner.jpg'
-import { Dropdown } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 
 export default function Home() {
     return (
         <div className="body">
-            <div id="home">
+            <div id="home">                
                 {/* left column containing 
                 categories dropdown and 2 images */}
                 <div id="home-col">
