@@ -10,9 +10,8 @@ export default function MaintainCart() {
                     <div className="cart-flex" >
                         {itemBox("Your Name", "Bill Hetherington")}
                         {CartSummary(3, 590.50)}
-                    </div>
+                    </div>                    
                 </div>
-
             </div>
         </div>
     )
@@ -23,8 +22,7 @@ function itemBox(prodImage, description, price) {
             <img src={prodImage} alt="prodImage" />
             <p>{description}</p>
             <div>
-                <h5>R {price}</h5>
-                
+                <h5>R {price}</h5>                
                 <h5>Remove</h5>
             </div>
         </div>

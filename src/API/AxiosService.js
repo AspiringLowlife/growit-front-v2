@@ -10,5 +10,8 @@ class AxiosService{
     login(data){
         return axiosConfig.post("Authenticate/login",data)
     }
+    getCategoryItems(data){
+        return axiosConfig.get(`Items/GetCategoryItems?category=${data}`)
+    }    
 }
 export default new AxiosService();

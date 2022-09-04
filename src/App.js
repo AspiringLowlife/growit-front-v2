@@ -11,6 +11,8 @@ import MaintainCart from './Pages/MaintainCart';
 import MaintainProfile from './Pages/MaintainProfile';
 import MaintainWishlist from './Pages/MaintainWishlist';
 import NotificationContainer from './Notifications/NotificationsContainer';
+import Products from './Pages/Products';
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route exact path='/MaintainCart' element={<MaintainCart />}></Route>
         <Route exact path='/MaintainProfile' element={<MaintainProfile />}></Route>
         <Route exact path='/MaintainWishlist' element={<MaintainWishlist />}></Route>
+        <Route exact path='/Products' element={<Products/>}></Route>
       </Routes>
     </div>
   )

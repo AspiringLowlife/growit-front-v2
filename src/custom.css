@@ -104,6 +104,11 @@
     }
 }
 
+.bottom-border{
+    border-bottom: 5px solid black;
+}
+/* End of Home CSS */
+
 /* maintainProfile CSS */
 .border.border-success {
     background-color: #e1f7e0;
@@ -141,7 +146,12 @@
 }
 
 .cart-flex{
-    display: flex;
-    gap:2rem;
-    padding-top: 20px;
+    display: flex;    
+    padding-top: 15px;
+    justify-content: space-between;
+}
+.item-flex{
+    display: flex;    
+    padding-top: 3px;
+    justify-content: space-between;
 }
