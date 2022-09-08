@@ -13,11 +13,13 @@ import MaintainWishlist from './Pages/MaintainWishlist';
 import NotificationContainer from './Notifications/NotificationsContainer';
 import Products from './Pages/Products';
 
-
 function App() {
+
+  //const CartContext = useContext([]);
+
   return (
     <div className='App'>
-      <NotificationContainer/>
+      <NotificationContainer />
       <Navbar />
       <Routes>
         <Route exact path='/' element={< Home />}></Route>
@@ -27,7 +29,7 @@ function App() {
         <Route exact path='/MaintainCart' element={<MaintainCart />}></Route>
         <Route exact path='/MaintainProfile' element={<MaintainProfile />}></Route>
         <Route exact path='/MaintainWishlist' element={<MaintainWishlist />}></Route>
-        <Route exact path='/Products' element={<Products/>}></Route>
+        <Route exact path='/Products' element={<Products />}></Route>
       </Routes>
     </div>
   )

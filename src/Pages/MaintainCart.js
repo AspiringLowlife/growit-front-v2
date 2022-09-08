@@ -1,7 +1,11 @@
 import React from "react";
 import '../custom.css';
+import { Button } from "react-bootstrap";
 
-export default function MaintainCart() {
+export default function MaintainCart() {     
+
+    //const [cartItems, dispatch] = useReducer(reducer, initialCartItems)
+
     return (
         <div class="container">
             <div>
@@ -10,6 +14,7 @@ export default function MaintainCart() {
                     <div className="cart-flex" >
                         {itemBox("Your Name", "Bill Hetherington")}
                         {CartSummary(3, 590.50)}
+                        <Button>CLICK FUCJK ME</Button>
                     </div>                    
                 </div>
             </div>

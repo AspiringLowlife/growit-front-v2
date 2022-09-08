@@ -13,5 +13,6 @@ class AxiosService{
     getCategoryItems(data){
         return axiosConfig.get(`Items/GetCategoryItems?category=${data}`)
     }    
+    
 }
 export default new AxiosService();
