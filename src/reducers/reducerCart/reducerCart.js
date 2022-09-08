@@ -40,3 +40,10 @@ export const actionDeleteItemFromCart = product => ({
 });
 
 
+
+export const thunkAddItemToCart = (product) => (dispatch, getState) =>{ 
+    dispatch(actionAddProductToCart(product));
+   // You can aslo dispatch to this and do extra logic and fire off actions like this 
+   //possibly fire off even more actions
+}
+
