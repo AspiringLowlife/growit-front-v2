@@ -5,10 +5,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../custom.css'
+import '../Navigation/pierre.css'
 
 export default function AppNavBar() {
     const username = useSelector((state) => state.reducerLogin.username);
-
+    const cart = useSelector((state) => state.reducerCart.cart)
     return (
         <Navbar className='background' expand="lg">
             <Container>
@@ -33,7 +34,7 @@ export default function AppNavBar() {
                             </Nav.Link>
                         }
                         <Nav.Link >
-                            <Link className="nav-link" to="/MaintainCart"><i className="bi bi-cart"></i></Link>
+                            <Link className="nav-link" to="/MaintainCart"><i className={cart.length > 0 ? `bi bi-cart pointer` : `bi bi-cart`}></i></Link>
                         </Nav.Link>
                         <NavDropdown title="Shop" id="basic-nav-dropdown">
                             <NavDropdown.Item>
