@@ -18,7 +18,7 @@ const initState = {
 //Reducer State Logic Here
 export default (state = initState, action) => {
     switch (action.type) {
-        case LOGIN:            
+        case LOGIN:
             state = cloneDeep(state);
             state.username = action.payload.data.username
             return state;
@@ -34,18 +34,16 @@ export const actionLogin = data => ({
     payload: { data },
 });
 
-export const thunkLogin = (data) => async (dispatch, getState) => {
+export const thunkLogin = (data) => (dispatch, getState) => {
     debugger
-    try {
-        const response = await AxiosService.login(data)
-        localStorage.setItem("token", response.data.token)
-        toast.success(data.username + " has signed in")
-        dispatch(actionLogin(response.data));
-    }
-    catch (e) {
-        toast.error("Incorrect Username or password")
-    }
+    AxiosService.login(data)
+        .then(function (response) {
+            localStorage.setItem("token", response.data.token)
+            toast.success(data.username + " has signed in")
+            dispatch(actionLogin(response.data));
+        })
+        .catch(function (error) {
+            toast.error("Incorrect Username or password")
+        })
 
-    // You can aslo dispatch to this and do extra logic and fire off actions like this 
-    //possibly fire off even more actions
 }
