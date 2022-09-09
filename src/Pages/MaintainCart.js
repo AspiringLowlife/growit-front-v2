@@ -38,7 +38,7 @@ export default function MaintainCart(props) {
                     <div className="cart-flex" >
                         {itemBox("Your Name", "Bill Hetherington")}
                         {/* {CartSummary(3, 590.50)} */}
-                        <Button onClick={() => console.log({cart})}>CLICK FUCJK ME</Button>
+                        <Button onClick={() => console.log({cart})}>CLICK ME</Button>
                     </div>
                 </div>
             </div>
