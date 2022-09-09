@@ -13,8 +13,7 @@ export default function MaintainCart() {
                     <div className="row"><h1>Shopping Cart</h1></div>
                     <div className="cart-flex" >
                         {itemBox("Your Name", "Bill Hetherington")}
-                        {CartSummary(3, 590.50)}
-                        <Button>CLICK FUCJK ME</Button>
+                        {CartSummary(3, 590.50)}                        
                     </div>                    
                 </div>
             </div>
