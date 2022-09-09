@@ -1,19 +1,21 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { Button, Dropdown, Card, FormCheck } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Dropdown } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import ReactSlider from "react-slider";
 import AxiosService from "../API/AxiosService";
 import ItemCard from "../Elements/ItemCard";
+import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart'
 
 export default function Products() {
-
+    
     const [products, updateProducts] = useState([])
     const [title, makeTitle] = useState("All Products")
-    //const [cartItems, dispatch] = useReducer(reducer, initialCartItems)
 
-    // function addItemToCart(product){
-    //     dispatch({type:"ADD_ITEM_TO_CART",payload:product})        
-    //     console.log({cartItems})
-    // }
+    const dispatch = useDispatch();
+
+    function addItemToCart(product) {
+        dispatch(actionAddProductToCart(product));
+    }
 
     async function getAllItems() {
         const response = await AxiosService.getAllItems()
@@ -46,8 +48,6 @@ export default function Products() {
         })
     }
 
-    //const temp = products.map((product) => <ItemCard item_Name={product.item_Name} description={product.description} />)   
-
     return (
         <div className="body">
             <div>
@@ -78,7 +78,7 @@ export default function Products() {
                         {products.map((product) => {
                             return (
                                 <>
-                                    <ItemCard item_Name={product.item_Name} description={product.description} imageURL={product.imageURL} />
+                                    <ItemCard item_Name={product.item_Name} description={product.description} imageURL={product.imageURL} addItemToCart={addItemToCart} />
                                 </>
                             )
                         })}

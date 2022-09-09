@@ -6,7 +6,6 @@ export default function ItemCard(props) {
 
     //customer's cart array
     
-
     function addToCart(product) {
         props.addItemToCart(product)
     }
