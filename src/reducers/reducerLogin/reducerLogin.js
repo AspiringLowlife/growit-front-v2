@@ -36,12 +36,9 @@ export const actionLogin = data => ({
 
 export const thunkLogin = (data) => async (dispatch, getState) => {
     debugger
-    const navigate = useNavigate()
     try {
         const response = await AxiosService.login(data)
         localStorage.setItem("token", response.data.token)
-        navigate("/")
-        //notification of success
         toast.success(data.username + " has signed in")
         dispatch(actionLogin(response.data));
     }
