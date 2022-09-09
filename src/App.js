@@ -14,10 +14,9 @@ import NotificationContainer from './Notifications/NotificationsContainer';
 import Products from './Pages/Products';
 import { Provider } from 'react-redux';
 import store from './store';
+import AppNavBar from './Navigation/AppNavBar';
 
 function App() {
-
-  //const CartContext = useContext([]);
 
   return (
     <div className='App'>
@@ -25,6 +24,8 @@ function App() {
         <BrowserRouter>
           <NotificationContainer />
           <Navbar />
+          {/* <AppNavBar/>  */}
+          {/* Added A little Navbar for you with working hamburger bar and did some condtional rendering for login button and profile page */}
           <Routes>
             <Route exact path='/' element={< Home />}></Route>
             <Route exact path='/Login' element={< Login />}></Route>
