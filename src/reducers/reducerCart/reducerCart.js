@@ -8,22 +8,32 @@ export const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART';
 //Intial State Here
 const initState = {
     cart: [],
- }
+}
 
 
 //Reducer State Logic Here
-export default (state = initState, action) =>{
+export default (state = initState, action) => {
     switch (action.type) {
-            case NEW_ITEM_ADDED:
-                state = cloneDeep(state);
+        case NEW_ITEM_ADDED:
+            state = cloneDeep(state);
+            let foundItem = state.cart.filter(item => item.itemID === action.payload.product.itemID)
+            debugger
+            if (foundItem.length > 0) {
+                let newCart = cloneDeep(state.cart.filter(product => product.itemID !== foundItem[0].itemID))
+                foundItem.Quantity = + 1
+                newCart.push(foundItem[0])
+                state.cart = newCart
+            }
+            else {
                 state.cart.push(action.payload.product);
-                return state;
-            case DELETE_ITEM_FROM_CART:
-                state = cloneDeep(state);
-                state.cart.pop(action.payload.product);
-                return state;
-      default:
-          return state;
+            }
+            return state;
+        case DELETE_ITEM_FROM_CART:
+            state = cloneDeep(state);
+            state.cart.pop(action.payload.product);
+            return state;
+        default:
+            return state;
     }
 };
 
@@ -31,12 +41,12 @@ export default (state = initState, action) =>{
 
 export const actionAddProductToCart = product => ({
     type: NEW_ITEM_ADDED,
-    payload: {product},
+    payload: { product },
 });
 
 export const actionDeleteItemFromCart = product => ({
     type: DELETE_ITEM_FROM_CART,
-    payload: {product},
+    payload: { product },
 });
 
 

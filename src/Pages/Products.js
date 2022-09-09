@@ -14,10 +14,10 @@ export default function Products() {
     const dispatch = useDispatch();
 
     function addItemToCart(product) {
-        dispatch(actionAddProductToCart(product));
+        dispatch(actionAddProductToCart(product));        
     }
 
-    async function getAllItems() {
+    async function getAllItems() {        
         const response = await AxiosService.getAllItems()
         return response
     }
@@ -78,7 +78,8 @@ export default function Products() {
                         {products.map((product) => {
                             return (
                                 <>
-                                    <ItemCard item_Name={product.item_Name} description={product.description} imageURL={product.imageURL} addItemToCart={addItemToCart} />
+                                    <ItemCard item_Name={product.item_Name} description={product.description}
+                                     imageURL={product.imageURL} addItemToCart={addItemToCart} itemID={product.itemID} Quantity={1}/>
                                 </>
                             )
                         })}
