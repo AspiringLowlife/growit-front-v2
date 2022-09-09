@@ -13,6 +13,8 @@ class AxiosService{
     getCategoryItems(data){
         return axiosConfig.get(`Items/GetCategoryItems?category=${data}`)
     }    
-    
+    getUserDetails(data){
+        return axiosConfig.get(`User/GetUserDetails?username=${data}`)
+    }
 }
 export default new AxiosService();

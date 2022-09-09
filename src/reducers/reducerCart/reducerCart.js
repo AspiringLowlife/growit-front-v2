@@ -10,17 +10,15 @@ const initState = {
     cart: [],
 }
 
-
 //Reducer State Logic Here
 export default (state = initState, action) => {
     switch (action.type) {
         case NEW_ITEM_ADDED:
             state = cloneDeep(state);
-            let foundItem = state.cart.filter(item => item.itemID === action.payload.product.itemID)
-            debugger
+            let foundItem = state.cart.filter(item => item.itemID === action.payload.product.itemID)          
             if (foundItem.length > 0) {
                 let newCart = cloneDeep(state.cart.filter(product => product.itemID !== foundItem[0].itemID))
-                foundItem.Quantity = + 1
+                foundItem[0].Quantity = foundItem[0].Quantity + 1
                 newCart.push(foundItem[0])
                 state.cart = newCart
             }
@@ -49,4 +47,8 @@ export const actionDeleteItemFromCart = product => ({
     payload: { product },
 });
 
-
+export const thunkAddItemToCart = (product) => (dispatch, getState) =>{ 
+    dispatch(actionAddProductToCart(product));
+   // You can aslo dispatch to this and do extra logic and fire off actions like this 
+   //possibly fire off even more actions
+}

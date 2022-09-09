@@ -4,35 +4,22 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosService from "../API/AxiosService";
 import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { actionLogin, thunkLogin } from "../reducers/reducerLogin/reducerLogin";
 
 export default function Login() {
 
-  const navigate = useNavigate()
-
-   async function login(data) {
-    const response = await axiosService.login(data)
-    return response
-  }
+  //logic send user details to reducer
+  const dispatch = useDispatch()
+  
   const formSubmission = (event) => {
     event.preventDefault()
     let testData = {
       "username": event.target.elements.username.value,
       "password": "Password@123",
-    }
-    login(testData).
-      then((response) => {        
-        localStorage.setItem("token", response.data.token)
-        navigate("/")
-        console.log("success")
-        //notification of success
-        toast.success(event.target.elements.username.value+" has signed in")
-      }).catch(
-        (error) => {
-          console.log("Error")
-          //notification of error
-          toast.error("Incorrect Username or password")
-        }
-      )
+    }    
+    dispatch(thunkLogin(testData))
+
   }
   return (
     <div id="login">
@@ -48,7 +35,7 @@ export default function Login() {
                 </Form.Group>
                 <Form.Group controlId="passwordGroup" className="form-group">
                   <Form.Label for="password">Password:</Form.Label><br />
-                  <Form.Control type="text" name="password"  class="form-control" />
+                  <Form.Control type="text" name="password" class="form-control" />
                 </Form.Group>
                 <Button type="submit" name="submit" className="btn btn-info btn-md" id="but" >Login</Button><br />
                 <span>New to Grow IT? </span><span id="register-link"><Link to="/Register" id="link" >Create an Account</Link></span>
