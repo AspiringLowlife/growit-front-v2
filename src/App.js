@@ -15,6 +15,7 @@ import Products from './Pages/Products';
 import { Provider } from 'react-redux';
 import store from './store';
 import AppNavBar from './Navigation/AppNavBar';
+import ProductDetails from './Pages/ProductDetails';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
             <Route exact path='/MaintainProfile' element={<MaintainProfile />}></Route>
             <Route exact path='/MaintainWishlist' element={<MaintainWishlist />}></Route>
             <Route exact path='/Products' element={<Products />}></Route>
+            <Route exact path='/ProductDetails' element={<ProductDetails />}></Route>
           </Routes>
         </BrowserRouter>
       </Provider>
