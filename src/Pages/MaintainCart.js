@@ -20,7 +20,7 @@ export default function MaintainCart(props) {
             </div>
         )
     }
-    function CarStummary(noOfItems, total) {
+    function CartStummary(noOfItems, total) {
         return (
             <div className="border border-success">
                 <h5>Cart Summary</h5>

@@ -18,7 +18,9 @@ export default (state = initState, action) => {
     switch (action.type) {
         case LOGIN:
             state = cloneDeep(state);
-            state.username = action.payload.data.username
+            // state.username = action.payload.data.username
+            // state.role=action.payload.data.role
+            state=action.payload.data
             return state;
         default:
             return state;
@@ -32,19 +34,19 @@ export const actionLogin = data => ({
     payload: { data },
 });
 
-export const thunkLogin = (data) => (dispatch, getState) => {    
-   
-    try {
-        const response =  AxiosService.login(data)
-        localStorage.setItem("token", response.data.token)        
-        //notification of success
-        toast.success(data.username + " has signed in")
-        dispatch(actionLogin(response.data));
-    }
-    catch (e) {
-        toast.error("Incorrect Username or password")
-    }
-
-    // You can aslo dispatch to this and do extra logic and fire off actions like this 
-    //possibly fire off even more actions
+export const thunkLogin = (data) => (dispatch, getState) => {
+    debugger
+    AxiosService.login(data)
+        .then(function (response) {
+            localStorage.setItem("token", response.data.token)
+            toast.success(data.username + " has signed in")
+            dispatch(actionLogin(response.data));
+        })
+        .catch(function (error) {
+            toast.error("Incorrect Username or password")
+        })
 }
+
+    // You can aslo dispatch to this and do extra logic and fire off actions like this
+    //possibly fire off even more actions
+

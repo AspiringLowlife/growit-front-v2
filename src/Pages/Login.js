@@ -10,8 +10,9 @@ export default function Login() {
   const navigate = useNavigate()
   //logic send user details to reducer
   const dispatch = useDispatch()
-  //get user who is logged in 
-  const username = useSelector((state) => state.reducerLogin.username)
+  //get user who is logged in from reducer
+  const username = useSelector((state) => state.reducerLogin.username) 
+  const role = useSelector((state) => state.reducerLogin.role)
 
   const formSubmission = (event) => {
     event.preventDefault()
