@@ -1,6 +1,4 @@
 import { cloneDeep } from 'lodash';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AxiosService from '../../API/AxiosService';
 
@@ -14,7 +12,6 @@ const initState = {
     token: "",
     expiration: ""
 }
-
 
 //Reducer State Logic Here
 export default (state = initState, action) => {
@@ -37,11 +34,10 @@ export const actionLogin = data => ({
 
 export const thunkLogin = (data) => async (dispatch, getState) => {
     debugger
-    const navigate = useNavigate()
+   
     try {
         const response = await AxiosService.login(data)
-        localStorage.setItem("token", response.data.token)
-        navigate("/")
+        localStorage.setItem("token", response.data.token)        
         //notification of success
         toast.success(data.username + " has signed in")
         dispatch(actionLogin(response.data));
