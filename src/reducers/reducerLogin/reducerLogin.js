@@ -1,5 +1,4 @@
 import { cloneDeep } from 'lodash';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AxiosService from '../../API/AxiosService';
 
@@ -14,13 +13,14 @@ const initState = {
     expiration: ""
 }
 
-
 //Reducer State Logic Here
 export default (state = initState, action) => {
     switch (action.type) {
         case LOGIN:
             state = cloneDeep(state);
-            state.username = action.payload.data.username
+            // state.username = action.payload.data.username
+            // state.role=action.payload.data.role
+            state=action.payload.data
             return state;
         default:
             return state;
@@ -45,5 +45,8 @@ export const thunkLogin = (data) => (dispatch, getState) => {
         .catch(function (error) {
             toast.error("Incorrect Username or password")
         })
-
 }
+
+    // You can aslo dispatch to this and do extra logic and fire off actions like this
+    //possibly fire off even more actions
+

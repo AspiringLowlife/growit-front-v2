@@ -6,6 +6,8 @@ import { connect, useSelector } from "react-redux";
 
 export default function MaintainCart(props) {
 
+    const cart = useSelector((state) => state.reducerCart.cart)
+
     function itemBox(prodImage, description, price) {
         return (
             <div className="my-row border border-success">
@@ -18,7 +20,7 @@ export default function MaintainCart(props) {
             </div>
         )
     }
-    function CarStummary(noOfItems, total) {
+    function CartStummary(noOfItems, total) {
         return (
             <div className="border border-success">
                 <h5>Cart Summary</h5>
@@ -28,7 +30,7 @@ export default function MaintainCart(props) {
         )
     }
 
-    const cart = useSelector((state) => state.reducerCart.cart)
+    
 
     return (
         <div class="container">

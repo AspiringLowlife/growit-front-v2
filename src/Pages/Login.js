@@ -1,32 +1,32 @@
 import React, { useEffect } from "react";
 import '../custom.css';
 import { Link, useNavigate } from "react-router-dom";
-import axiosService from "../API/AxiosService";
 import { Button, Form } from "react-bootstrap";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { actionLogin, thunkLogin } from "../reducers/reducerLogin/reducerLogin";
+import {thunkLogin } from "../reducers/reducerLogin/reducerLogin";
 
 export default function Login() {
 
+  const navigate = useNavigate()
   //logic send user details to reducer
   const dispatch = useDispatch()
-  const username = useSelector((state) => state.reducerLogin.username);
-  const navigate = useNavigate()
+  //get user who is logged in from reducer
+  const username = useSelector((state) => state.reducerLogin.username) 
+  const role = useSelector((state) => state.reducerLogin.role)
 
   const formSubmission = (event) => {
     event.preventDefault()
     let testData = {
       "username": event.target.elements.username.value,
       "password": "Password@123",
-    }    
+    }
     dispatch(thunkLogin(testData))
   }
-
+  //navigate to home page after succesful login
   useEffect(() => {
-    if (username !== "") navigate('/')
+    if (username !== "") navigate("/")
   }, [username])
-  
+
   return (
     <div id="login">
       <div class="container">
