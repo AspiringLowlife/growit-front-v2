@@ -16,7 +16,7 @@ const initState = {
 //Reducer State Logic Here
 export default (state = initState, action) => {
     switch (action.type) {
-        case LOGIN:            
+        case LOGIN:
             state = cloneDeep(state);
             state.username = action.payload.data.username
             return state;
@@ -32,11 +32,10 @@ export const actionLogin = data => ({
     payload: { data },
 });
 
-export const thunkLogin = (data) => async (dispatch, getState) => {
-    debugger
+export const thunkLogin = (data) => (dispatch, getState) => {    
    
     try {
-        const response = await AxiosService.login(data)
+        const response =  AxiosService.login(data)
         localStorage.setItem("token", response.data.token)        
         //notification of success
         toast.success(data.username + " has signed in")
