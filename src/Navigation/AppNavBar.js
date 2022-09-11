@@ -5,6 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../custom.css'
+import ElementSearchProducts from '../Elements/ElementSearchProducts';
 import '../Navigation/pierre.css'
 
 export default function AppNavBar() {
@@ -41,6 +42,7 @@ export default function AppNavBar() {
                                 <Link class="nav-link" to="/Products">Products</Link>
                             </NavDropdown.Item>
                         </NavDropdown>
+                        <ElementSearchProducts/>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

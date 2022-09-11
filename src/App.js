@@ -24,8 +24,8 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <NotificationContainer />
-          <Navbar />
-          {/* <AppNavBar/>  */}
+          {/* <Navbar /> */}
+          <AppNavBar/> 
           {/* Added A little Navbar for you with working hamburger bar and did some condtional rendering for login button and profile page */}
           <Routes>
             <Route exact path='/' element={< Home />}></Route>
