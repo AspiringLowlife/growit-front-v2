@@ -22,7 +22,7 @@ export default function ElementSearchProducts() {
         event.preventDefault();
         const searchQuery = event.target.value;
         setSearchResults([]);
-        
+
         //  Short circuit when the user has empty search field
         if (searchQuery === "") {
             setSearchResults([]);
@@ -58,7 +58,7 @@ export default function ElementSearchProducts() {
                     <Popover.Body>
                         {searchresults.map((product) =>
                             <ItemCard item_Name={product.item_Name} description={product.description}
-                                imageURL={product.imageURL} itemID={product.itemID} Quantity={1} />
+                                imageURL={product.imageURL} itemID={product.itemID} Quantity={1} isSearchView={true}/>
                         )}
                     </Popover.Body>
                 </Popover>
