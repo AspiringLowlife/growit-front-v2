@@ -12,5 +12,5 @@
     opacity: 0;
     animation: fadeIn ease-in 1;
     animation-fill-mode: forwards;
-    animation-duration: 1s;
+    animation-duration: .6s;
 }
