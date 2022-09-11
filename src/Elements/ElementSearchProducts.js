@@ -35,7 +35,7 @@ export default function ElementSearchProducts() {
             || product.category.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)));
 
         // Short circuit when their are no results for search
-        if (searchresults.length === 0) {
+        if (searchresults.length === 0 && show) {
             setShow(false)
             return
         }
