@@ -29,7 +29,9 @@ export default function ElementSearchProducts() {
             return
         }
 
-        setSearchResults(products.filter(product => product.item_Name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1));
+        setSearchResults(products.filter(product => (
+            product.item_Name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 
+            || product.category.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)));
 
         // Short circuit when their are no results for search
         if (searchresults.length === 0) {
