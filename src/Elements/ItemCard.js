@@ -16,7 +16,7 @@ export default function ItemCard(props) {
     }
 
     return (
-        <Card style={props.isSearchView ? {width : '11rem'} : { width: '18rem' }}>
+        <Card style={{ width: '18rem' }}>
             <Card.Img onClick={() => {
                 debugger
                 dispatch(actionSetSelectedProduct(props))
