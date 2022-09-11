@@ -30,6 +30,13 @@ export default function ElementSearchProducts() {
         }
 
         setSearchResults(products.filter(product => product.item_Name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1));
+
+        // Short circuit when their are no results for search
+        if (searchresults.length === 0) {
+            setShow(false)
+            return
+        }
+
         setShow(true);
         setTarget(event.target);
     }
@@ -66,7 +73,7 @@ export default function ElementSearchProducts() {
                 onChange={generateSearchResults}
                 onFocus={generateSearchResults}
                 name="search"
-                //onBlur={}
+            //onBlur={}
             />
             {popout}
         </Form>
