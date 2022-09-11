@@ -246,6 +246,6 @@
     background-color: var(--bs-popover-bg);
     background-clip: padding-box;
     border: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
-    max-width: 23rem;
+    max-width: 23rem !important;
     border-radius: var(--bs-popover-border-radius);
 }
