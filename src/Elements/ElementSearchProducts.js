@@ -21,7 +21,8 @@ export default function ElementSearchProducts() {
     function generateSearchResults(event) {
         event.preventDefault();
         const searchQuery = event.target.value;
-
+        setSearchResults([]);
+        
         //  Short circuit when the user has empty search field
         if (searchQuery === "") {
             setSearchResults([]);
