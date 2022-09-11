@@ -79,7 +79,7 @@ export default function Products() {
                             return (
                                 <>
                                     <ItemCard item_Name={product.item_Name} description={product.description}
-                                     imageURL={product.imageURL} addItemToCart={addItemToCart} itemID={product.itemID} Quantity={1}/>
+                                     imageURL={product.imageURL} addItemToCart={addItemToCart} itemID={product.itemID} Quantity={1} isFromProductPage={true}/>
                                 </>
                             )
                         })}

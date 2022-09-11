@@ -1,10 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import AxiosService from '../API/AxiosService';
 
 export default function ProductDetails() {
+  const [product, setProduct] = useState({});
 
-  const product = useSelector((state) => state.reducerSelectedProduct.product)
+  const { id } = useParams()
+
+  useEffect(() => {
+    AxiosService.getSelectedItem(id).then(function (response) {
+      setProduct(response.data)
+    })
+  }, [id])
+
+
   return (
-    <div>{product.item_Name}</div>
+    <div>
+      <h1>Product Details</h1>
+      {product.item_Name}
+    </div>
   )
 }

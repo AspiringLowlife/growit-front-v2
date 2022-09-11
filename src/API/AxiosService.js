@@ -16,5 +16,9 @@ class AxiosService{
     getUserDetails(data){
         return axiosConfig.get(`User/GetUserDetails?username=${data}`)
     }
+
+    getSelectedItem(data){
+        return axiosConfig.get(`Items/GetSelectedItem?id=${data}`);
+    }
 }
 export default new AxiosService();
