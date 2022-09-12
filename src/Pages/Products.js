@@ -8,8 +8,7 @@ import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart'
 
 export default function Products() {
 
-    const [products, updateProducts] = useState([]);
-    const [filteredProducts, updateFilteredProducts] = useState([])
+    const [products, updateProducts] = useState([])
     const [title, makeTitle] = useState("All Products")
 
     const dispatch = useDispatch();
@@ -26,8 +25,6 @@ export default function Products() {
     useEffect(() => {
         getAllItems().then((response) => {
             updateProducts(response.data)
-            updateFilteredProducts(response.data)
-            applyPriceRangeFilter()
         })
     }, [])
 
@@ -40,9 +37,7 @@ export default function Products() {
     function setProductsList(category) {
         getbyCategory(category).then((response) => {
             updateProducts(response.data)
-            updateFilteredProducts(response.data)
             makeTitle(category)
-            applyPriceRangeFilter()
         })
     }
 
@@ -50,8 +45,6 @@ export default function Products() {
     function setToDefault() {
         getAllItems().then((response) => {
             updateProducts(response.data)
-            updateFilteredProducts(response.data)
-            applyPriceRangeFilter()
         })
         makeTitle("All Products")
     }
@@ -81,12 +74,11 @@ export default function Products() {
         setMin(newValue[0]);
         setMax(newValue[1]);
         // TODO: Write Code here to filter 
-        applyPriceRangeFilter()
+
     };
 
-    function applyPriceRangeFilter(){
-        const priceFilterdProducts = products.filter(product => (product.price > min && product.price < max))
-        updateFilteredProducts(priceFilterdProducts)
+    function getFilterProducts() {
+        return products.filter(product => (product.price > min && product.price < max))
     }
 
     return (
@@ -121,10 +113,12 @@ export default function Products() {
                         </Card.Body>
                         <div style={{ display: "flex" }}>
                             <div style={{ flex: "50%", margin: "5px" }}>
-                                Min : R {min}
+                                <Form.Label for="username" >Min : R</Form.Label>
+                                <Form.Control defaultValue={min} type='number' label onChange={(event) => setMin(event.target.value)}/>
                             </div>
                             <div style={{ flex: "50%", margin: "5px" }}>
-                                Max : R {max}
+                                <Form.Label for="username" >Max : R</Form.Label>
+                                <Form.Control defaultValue={max} type='number' label onChange={(event) => setMax(event.target.value)}/>
                             </div>
                         </div>
                     </Card>
@@ -133,7 +127,7 @@ export default function Products() {
             <div className="product-region">
                 <h1>{title}</h1>
                 <div className="item-flex">
-                    {filteredProducts.map((product) => {
+                    {getFilterProducts().map((product) => {
                         return (
                             <>
                                 <ItemCard item_Name={product.item_Name} description={product.description}
