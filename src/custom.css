@@ -1,7 +1,7 @@
 .body {
     padding-left: 200px;
     padding-right: 200px;
-    padding-top: 10px;        
+    padding-top: 10px;
 }
 
 /* Begining of Navbar CSS */
@@ -58,7 +58,7 @@
     color: white;
     /* background-color: #1fb57a; */
     background-color: #f96400;
-    border:none;
+    border: none;
 
 }
 
@@ -85,7 +85,7 @@
 
 /* Home CSS */
 #home {
-    display: flex;    
+    display: flex;
 }
 
 #home-col {
@@ -107,72 +107,76 @@
     }
 }
 
-.bottom-border{
+.bottom-border {
     border-bottom: 5px solid black;
 }
+
 /* End of Home CSS */
 
 /* maintainProfile CSS */
 .border.border-success {
     background-color: #e1f7e0;
-    
+
     padding: 15px;
 }
 
-.col-group{
+.col-group {
     display: flex;
-    gap: 2rem;    
+    gap: 2rem;
     flex-direction: column;
 }
 
-.my-col {   
+.my-col {
     display: flex;
     flex-direction: column;
 }
 
-.my-row{    
+.my-row {
     display: flex;
-    gap: 2rem;  
-    justify-content: space-around;    
+    gap: 2rem;
+    justify-content: space-around;
 }
 
-.my-row>*{
-    padding-right:75px ;
+.my-row>* {
+    padding-right: 75px;
 }
 
-.sit-right{
+.sit-right {
     color: #1fb57a;
-    
+
 }
 
-.test{
+.test {
     display: flex;
 }
 
-.cart-flex{
-    display: flex;    
+.cart-flex {
+    display: flex;
     padding-top: 15px;
     justify-content: space-between;
 }
-.item-flex{
-    display: flex;    
+
+.item-flex {
+    display: flex;
     padding-top: 3px;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 2rem;
 }
 
-.padding-top{
-    padding-top: 30px;   
-    
+.padding-top {
+    padding-top: 30px;
+
 }
 
-.invisible{
+.invisible {
     visibility: hidden;
 }
 
+
+/* Added by me for example purposes */
 /* I added these 2 classes to overide a few of the styling is applied  */
-.card{
+.card {
     --bs-card-spacer-y: 1rem;
     --bs-card-spacer-x: 1rem;
     --bs-card-title-spacer-y: 0.5rem;
@@ -248,4 +252,41 @@
     border: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
     max-width: 23rem !important;
     border-radius: var(--bs-popover-border-radius);
+}
+
+.css-187mznn-MuiSlider-root {
+    border-radius: 12px;
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    touch-action: none;
+    color: #f96400 !important;
+    -webkit-tap-highlight-color: transparent;
+    height: 4px;
+    width: 100%;
+    padding: 13px 0;
+}
+
+.flex-products-page {
+    margin-top: 2rem;
+    display: flex;
+}
+
+.filter-region {
+    flex: 20%;
+    border-right: 1px solid black;
+    margin-right: 5rem;
+}
+
+.product-region {
+    flex: 80%;
+    margin-right: 2rem;
+}
+
+.list-group-item.active {
+    z-index: 2;
+    color: var(--bs-list-group-active-color);
+    background-color: #f96400 !important;
+    border-color: #e1f7e0 !important;
 }
