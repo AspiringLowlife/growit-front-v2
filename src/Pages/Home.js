@@ -7,6 +7,7 @@ import { Button, Dropdown, Card } from "react-bootstrap";
 import ItemCard from "../Elements/ItemCard";
 import { useNavigate } from "react-router-dom";
 import '../Navigation/pierre.css'
+
 export default function Home() {
 
     const navigate = useNavigate()
