@@ -30,18 +30,22 @@ export default function MaintainCart(props) {
         )
     }
 
-    
+
 
     return (
         <div class="container">
             <div>
                 <div>
                     <div className="row"><h1>Shopping Cart</h1></div>
-                    <div className="cart-flex" >
-                        {itemBox("Your Name", "Bill Hetherington")}
-                        {/* {CartSummary(3, 590.50)} */}
-                        <Button onClick={() => console.log({cart})}>CLICK ME</Button>
-                    </div>
+
+                    {cart.map((product) => {
+                        return (
+                            <div className="cart-flex" style={{width :"200px", height: "200px"}}>
+                                {itemBox(product.imageURL, product.item_Name)}
+                                {/* {CartSummary(3, 590.50)} */}
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
