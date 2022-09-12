@@ -27,6 +27,7 @@ export default function Products() {
         getAllItems().then((response) => {
             updateProducts(response.data)
             updateFilteredProducts(response.data)
+            applyPriceRangeFilter()
         })
     }, [])
 
@@ -39,7 +40,9 @@ export default function Products() {
     function setProductsList(category) {
         getbyCategory(category).then((response) => {
             updateProducts(response.data)
+            updateFilteredProducts(response.data)
             makeTitle(category)
+            applyPriceRangeFilter()
         })
     }
 
@@ -47,6 +50,8 @@ export default function Products() {
     function setToDefault() {
         getAllItems().then((response) => {
             updateProducts(response.data)
+            updateFilteredProducts(response.data)
+            applyPriceRangeFilter()
         })
         makeTitle("All Products")
     }
@@ -76,9 +81,13 @@ export default function Products() {
         setMin(newValue[0]);
         setMax(newValue[1]);
         // TODO: Write Code here to filter 
+        applyPriceRangeFilter()
+    };
+
+    function applyPriceRangeFilter(){
         const priceFilterdProducts = products.filter(product => (product.price > min && product.price < max))
         updateFilteredProducts(priceFilterdProducts)
-    };
+    }
 
     return (
         <div className="flex-products-page">
