@@ -126,7 +126,7 @@ export default function Products() {
                 </Form>
             </div>
             <div className="product-region">
-                <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>10046
+                <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>
                 <div className="item-flex">
                     {getFilterProducts().map((product) => {
                         return (
