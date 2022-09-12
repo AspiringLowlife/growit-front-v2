@@ -50,9 +50,7 @@ export default function Products() {
     }
 
     // Code for price slider
-    const [value, setValue] = useState([0, 10000]);
-    const [min, setMin] = useState(0);
-    const [max, setMax] = useState(10000);
+    const [value, setValue] = useState([0, 5000]);
 
     function valueLabelFormat(value) {
         const units = ['R'];
@@ -71,14 +69,12 @@ export default function Products() {
     const handleChange = (event, newValue) => {
         debugger
         setValue(newValue);
-        setMin(newValue[0]);
-        setMax(newValue[1]);
         // TODO: Write Code here to filter 
 
     };
 
     function getFilterProducts() {
-        return products.filter(product => (product.price > min && product.price < max))
+        return products.filter(product => (product.price > value[0] && product.price < value[1]))
     }
 
     return (
@@ -114,18 +110,23 @@ export default function Products() {
                         <div style={{ display: "flex" }}>
                             <div style={{ flex: "50%", margin: "5px" }}>
                                 <Form.Label for="username" >Min : R</Form.Label>
-                                <Form.Control defaultValue={min} type='number' label onChange={(event) => setMin(event.target.value)}/>
+                                <Form.Control defaultValue={value[0]} type='number' label onChange={(event) => {
+                                    setValue([event.target.value, value[1]])
+
+                                }} />
                             </div>
                             <div style={{ flex: "50%", margin: "5px" }}>
                                 <Form.Label for="username" >Max : R</Form.Label>
-                                <Form.Control defaultValue={max} type='number' label onChange={(event) => setMax(event.target.value)}/>
+                                <Form.Control defaultValue={value[1]} type='number' label onChange={(event) => {
+                                    setValue([value[0], event.target.value])
+                                }} />
                             </div>
                         </div>
                     </Card>
                 </Form>
             </div>
             <div className="product-region">
-                <h1>{title}</h1>
+                <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>10046
                 <div className="item-flex">
                     {getFilterProducts().map((product) => {
                         return (
