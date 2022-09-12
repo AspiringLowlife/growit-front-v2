@@ -8,7 +8,8 @@ import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart'
 
 export default function Products() {
 
-    const [products, updateProducts] = useState([])
+    const [products, updateProducts] = useState([]);
+    const [filteredProducts, updateFilteredProducts] = useState([])
     const [title, makeTitle] = useState("All Products")
 
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function Products() {
     useEffect(() => {
         getAllItems().then((response) => {
             updateProducts(response.data)
+            updateFilteredProducts(response.data)
         })
     }, [])
 
@@ -75,7 +77,7 @@ export default function Products() {
         setMax(newValue[1]);
         // TODO: Write Code here to filter 
         const priceFilterdProducts = products.filter(product => (product.price > min && product.price < max))
-        updateProducts(priceFilterdProducts)
+        updateFilteredProducts(priceFilterdProducts)
     };
 
     return (
@@ -122,7 +124,7 @@ export default function Products() {
             <div className="product-region">
                 <h1>{title}</h1>
                 <div className="item-flex">
-                    {products.map((product) => {
+                    {filteredProducts.map((product) => {
                         return (
                             <>
                                 <ItemCard item_Name={product.item_Name} description={product.description}
