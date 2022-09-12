@@ -6,7 +6,7 @@ import banner from '../Images/plantBanner.jpg'
 import { Button, Dropdown, Card } from "react-bootstrap";
 import ItemCard from "../Elements/ItemCard";
 import { useNavigate } from "react-router-dom";
-
+import '../Navigation/pierre.css'
 export default function Home() {
 
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ export default function Home() {
                 {/* right colum with banner, text, three images of products/Generate items use case */}
                 <div id="home-col">
                     <img class="banner" src={banner} width="1400" />
-                    <h1 className="bottom-border">Hot Deals</h1>
+                    <h1 className="bottom-border rainbow">Hot Deals</h1>
                     <div className="item-flex">
                         <ItemCard imageURL={pic}/>
                         <ItemCard imageURL={pic}/>
