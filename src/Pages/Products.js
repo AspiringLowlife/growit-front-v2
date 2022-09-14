@@ -67,7 +67,6 @@ export default function Products() {
     }
 
     const handleChange = (event, newValue) => {
-        debugger
         setValue(newValue);
         // TODO: Write Code here to filter 
 

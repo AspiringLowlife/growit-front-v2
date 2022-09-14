@@ -3,6 +3,7 @@ import { Button, Form, Overlay, Popover } from 'react-bootstrap'
 import AxiosService from '../API/AxiosService';
 import ItemCard from './ItemCard';
 import './ElementSearchProducts.css'
+import { useParams } from 'react-router-dom';
 
 export default function ElementSearchProducts() {
     const [products, updateProducts] = useState([]);
@@ -86,7 +87,7 @@ export default function ElementSearchProducts() {
                 <span onClick={() => {
                     setSearchValue("");
                     setShow(false);
-                }} className='searchclear bi bi-x'></span>
+                }} className='searchclear fade-in bi bi-x'></span>
             }
             {popout}
         </Form>

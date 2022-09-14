@@ -35,7 +35,6 @@ export const actionLogin = data => ({
 });
 
 export const thunkLogin = (data) => (dispatch, getState) => {
-    debugger
     AxiosService.login(data)
         .then(function (response) {
             localStorage.setItem("token", response.data.token)
