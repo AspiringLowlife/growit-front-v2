@@ -16,7 +16,7 @@ export default function ItemCard(props) {
             <Link to={props.isFromProductPage ? `${props.itemID}` : `Products/${props.itemID}`}>
                 <Card.Img variant="top" height={200} src={props.imageURL} alt="Prod Image" />
             </Link>
-            <Card.Body>
+            <Card.Body className='custom-background-color'>
                 <Card.Title>{props.item_Name}</Card.Title>
                 <Card.Text>
                     {props.description}

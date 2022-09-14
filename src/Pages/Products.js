@@ -79,7 +79,7 @@ export default function Products() {
 
     return (
         <div className="flex-products-page">
-            <div className="filter-region">
+            <div className="filter-region custom-background-color">
                 <div>
                     <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>Filters</h1>
                 </div>
@@ -91,7 +91,7 @@ export default function Products() {
                     <ListGroup.Item as="li" active={title === "Tool"} onClick={() => setProductsList("Tool")} style={{ cursor: "pointer" }}>Tools</ListGroup.Item>
                     <ListGroup.Item as="li" active={title === "Pot"} onClick={() => setProductsList("Pot")} style={{ cursor: "pointer" }}>Pots</ListGroup.Item>
                 </ListGroup>
-                <Form>
+                <Form >
                     <Card style={{ margin: "1rem" }}>
                         <Card.Header>
                             <h2>Price</h2>
