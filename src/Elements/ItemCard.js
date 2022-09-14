@@ -2,6 +2,7 @@ import '../custom.css';
 import pic from '../Images/ots1.jpg'
 import { Button, Dropdown, Card } from "react-bootstrap";
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function ItemCard(props) {
 
@@ -9,6 +10,7 @@ export default function ItemCard(props) {
 
     function addToCart(product) {
         props.addItemToCart(product)
+        toast.success(props.item_Name + " has been added to your cart.")
     }
 
     return (
