@@ -4,6 +4,8 @@ import AxiosService from '../API/AxiosService';
 import ItemCard from './ItemCard';
 import './ElementSearchProducts.css'
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart';
 
 export default function ElementSearchProducts() {
     const [products, updateProducts] = useState([]);
@@ -48,6 +50,13 @@ export default function ElementSearchProducts() {
         setTarget(event.target);
     }
 
+    const dispatch = useDispatch();
+
+    function addItemToCart(product) {
+        dispatch(actionAddProductToCart(product));
+    }
+
+
     const popout = (
         <div ref={ref}>
             <Overlay
@@ -61,7 +70,7 @@ export default function ElementSearchProducts() {
                     <Popover.Header as="h3">Products</Popover.Header>
                     <Popover.Body>
                         {searchresults.map((product) =>
-                            <ItemCard item_Name={product.item_Name} description={product.description}
+                            <ItemCard addItemToCart={addItemToCart} item_Name={product.item_Name} description={product.description}
                                 imageURL={product.imageURL} itemID={product.itemID} Quantity={1} />
                         )}
                     </Popover.Body>

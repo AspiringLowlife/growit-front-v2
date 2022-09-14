@@ -41,7 +41,7 @@ export default function MaintainCart(props) {
                     {cart.map((product) => {
                         return (
                             <div className="cart-flex" style={{width :"200px", height: "200px"}}>
-                                {itemBox(product.imageURL, product.item_Name)}
+                                {itemBox(product.imageURL, product.item_Name, product.price)}
                                 {/* {CartSummary(3, 590.50)} */}
                             </div>
                         )

@@ -1,7 +1,7 @@
 .pointer {
 	border-radius: 50%;
 	cursor: pointer;
-	box-shadow: 0 0 0 rgb(244,157,22);
+	box-shadow: 0 0 0 rgb(245, 117, 12);
 	animation: pulse 2s infinite;
 }
 @-webkit-keyframes pulse {
