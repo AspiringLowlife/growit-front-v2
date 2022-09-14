@@ -80,7 +80,9 @@ export default function Products() {
     return (
         <div className="flex-products-page">
             <div className="filter-region">
-                <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>Filters</h1>
+                <div>
+                    <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>Filters</h1>
+                </div>
                 <ListGroup style={{ margin: "1rem" }} as="ul">
                     <ListGroup.Item as="li"><strong>Categories</strong></ListGroup.Item>
                     <ListGroup.Item as="li" active={title === "All Products"} onClick={() => setToDefault()} style={{ cursor: "pointer" }}>All Products</ListGroup.Item>
@@ -110,14 +112,14 @@ export default function Products() {
                         <div style={{ display: "flex" }}>
                             <div style={{ flex: "50%", margin: "5px" }}>
                                 <Form.Label for="username" >Min : R</Form.Label>
-                                <Form.Control defaultValue={value[0]} type='number' label onChange={(event) => {
+                                <Form.Control defaultValue={value[0]} value={value[0]} type='number' label onChange={(event) => {
                                     setValue([event.target.value, value[1]])
 
                                 }} />
                             </div>
                             <div style={{ flex: "50%", margin: "5px" }}>
                                 <Form.Label for="username" >Max : R</Form.Label>
-                                <Form.Control defaultValue={value[1]} type='number' label onChange={(event) => {
+                                <Form.Control defaultValue={value[1]} value={value[1]} type='number' label onChange={(event) => {
                                     setValue([value[0], event.target.value])
                                 }} />
                             </div>
@@ -126,7 +128,9 @@ export default function Products() {
                 </Form>
             </div>
             <div className="product-region">
-                <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>
+                <div>
+                    <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>
+                </div>
                 <div className="item-flex">
                     {getFilterProducts().map((product) => {
                         return (
