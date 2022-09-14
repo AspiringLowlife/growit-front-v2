@@ -14,3 +14,12 @@
     animation-fill-mode: forwards;
     animation-duration: .6s;
 }
+
+.searchclear {
+    position: relative;
+    margin: auto;
+    right: 37px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ccc;
+}

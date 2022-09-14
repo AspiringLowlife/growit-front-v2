@@ -8,6 +8,8 @@ export default function ElementSearchProducts() {
     const [products, updateProducts] = useState([]);
     const [searchresults, setSearchResults] = useState([]);
 
+    const [searchValue, setSearchValue] = useState("");
+
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
     const ref = useRef(null);
@@ -20,6 +22,7 @@ export default function ElementSearchProducts() {
 
     function generateSearchResults(event) {
         event.preventDefault();
+        setSearchValue(event.target.value);
         const searchQuery = event.target.value;
         setSearchResults([]);
 
@@ -31,7 +34,7 @@ export default function ElementSearchProducts() {
         }
 
         setSearchResults(products.filter(product => (
-            product.item_Name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 
+            product.item_Name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
             || product.category.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)));
 
         // Short circuit when their are no results for search
@@ -75,9 +78,16 @@ export default function ElementSearchProducts() {
                 aria-label="Search"
                 onChange={generateSearchResults}
                 onFocus={generateSearchResults}
+                value={searchValue}
                 name="search"
             //onBlur={}
             />
+            {searchValue.length !== 0 &&
+                <span onClick={() => {
+                    setSearchValue("");
+                    setShow(false);
+                }} className='searchclear bi bi-x'></span>
+            }
             {popout}
         </Form>
     )
