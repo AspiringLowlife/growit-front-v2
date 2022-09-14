@@ -32,9 +32,9 @@ export default function AppNavBar() {
         <Navbar className='background' expand="lg">
             <Container>
                 <Navbar.Brand><Link class="navbar-brand" to="/">Grow IT</Link></Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav>
                         <Nav.Link >
                             <Link className="nav-link" to="/Support">Support</Link>
                         </Nav.Link>
@@ -59,9 +59,11 @@ export default function AppNavBar() {
                                 <Link class="nav-link" to="/Products">Products</Link>
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <ElementSearchProducts />
                     </Nav>
                 </Navbar.Collapse>
+                <div className='justify-content-end'>
+                    <ElementSearchProducts />
+                </div>
             </Container>
         </Navbar>
     )
