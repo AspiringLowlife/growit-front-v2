@@ -18,6 +18,7 @@ export default function MaintainProfile() {
             updateUserDetails(response.data)
         })
     }, [])
+    
     return (
         <div class="container">
             <div className="col-group">
