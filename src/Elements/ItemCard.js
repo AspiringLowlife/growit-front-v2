@@ -31,7 +31,7 @@ export default function ItemCard(props) {
                     toast.info(item.item_Name + " has been added to your wish list.")
                 }
             }).catch(function (response) {
-                toast.error(response.data)
+                toast.error(response.data.Message)
             })
     }
 
