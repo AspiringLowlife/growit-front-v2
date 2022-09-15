@@ -5,15 +5,25 @@ import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart';
+import AxiosService from '../API/AxiosService';
 
 export default function ItemCard(props) {
-    
+
     const username = useSelector((state) => state.reducerLogin.username);
     const dispatch = useDispatch();
 
     function addItemToCart(product) {
         dispatch(actionAddProductToCart(product));
         toast.success(props.item_Name + " has been added to your cart.")
+    }
+
+    function createWishListItem(item) {
+        const request = {
+            username: username,
+            itemID: item.itemID
+        }
+
+        AxiosService.createWishListItem(request);
     }
 
     return (
@@ -28,7 +38,7 @@ export default function ItemCard(props) {
                 </Card.Text>
                 <Button className="btn btn-info btn-md" onClick={() => addItemToCart(props)}>Add to Cart</Button>
                 {username !== "" &&
-                    <i onClick={() => {}} className="bi bi-heart"></i>
+                    <i onClick={() => { createWishListItem(props) }} className="bi bi-heart pointer"></i>
                 }
             </Card.Body>
         </Card >

@@ -13,6 +13,7 @@ import '../Navigation/pierre.css'
 export default function AppNavBar() {
     const username = useSelector((state) => state.reducerLogin.username);
     const [id, setId] = useState(null);
+    const [wishID, setWishId] = useState(null);
 
     async function getUserDetails() {
         if (username !== "") {
@@ -23,8 +24,20 @@ export default function AppNavBar() {
         }
     }
 
+    async function getWishList() {
+        if (username !== "") {
+            await AxiosService.getWishList({ username })
+                .then(function (response) {
+                    setWishId(response.data)
+                })
+        }
+    }
+
     useEffect(() => {
+        //Use for user profile page
         getUserDetails();
+        //use for user wishlist page
+        getWishList();
     }, [username])
 
     const cart = useSelector((state) => state.reducerCart.cart)
@@ -43,9 +56,9 @@ export default function AppNavBar() {
                                 <Link className="nav-link" to="/Login">Login</Link>
                             </Nav.Link>
                         }
-                        {username !== "" &&
+                        {username !== "" && 
                             <Nav.Link >
-                                <Link className="nav-link" to="/MaintainWishlist"><i className="bi bi-heart"></i></Link>
+                                <Link className="nav-link" to={`/MaintainWishlist/${wishID}`}><i className="bi bi-heart"></i></Link>
                             </Nav.Link>
                         }
                         {username !== "" &&

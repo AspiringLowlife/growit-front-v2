@@ -34,7 +34,7 @@ function App() {
             <Route exact path='Register' element={<Register />} />
             <Route exact path='MaintainCart' element={<MaintainCart />} />
             <Route exact path='MaintainProfile/:id' element={<MaintainProfile />} />
-            <Route exact path='MaintainWishlist' element={<MaintainWishlist />} />
+            <Route exact path='MaintainWishlist/:id' element={<MaintainWishlist />} />
             <Route exact path='Products' element={<Products />}/>
             <Route path='Products/:id' element={<ProductDetails />} />
             <Route path='*' element={<></>}/>

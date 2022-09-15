@@ -20,5 +20,17 @@ class AxiosService{
     getSelectedItem(data){
         return axiosConfig.get(`Items/GetSelectedItem?id=${data}`);
     }
+
+    createWishListItem(data){
+        return axiosConfig.post("WishList/createWishListItem", data);
+    }
+
+    getWishList(data){
+        return axiosConfig.post("WishList/getWishList", data);
+    }
+
+    getWishListContent(data){
+        return axiosConfig.post("WishList/getWishListContent", data);
+    }
 }
 export default new AxiosService();
