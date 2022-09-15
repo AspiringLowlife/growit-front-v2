@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import AxiosService from '../API/AxiosService';
 import '../custom.css'
 import ElementSearchProducts from '../Elements/ElementSearchProducts';
-import '../Navigation/pierre.css'
+import '../Navigation/AppNavBar.css'
 
 export default function AppNavBar() {
     const username = useSelector((state) => state.reducerLogin.username);
