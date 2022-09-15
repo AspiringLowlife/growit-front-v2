@@ -176,6 +176,8 @@
 }
 
 
+
+/* Custom Styling */
 /* Added by me for example purposes */
 /* I added these 2 classes to overide a few of the styling is applied  */
 .card {
@@ -321,3 +323,5 @@
 .give-mouse-pointer:hover{
     color: rgba(170, 25, 32, 0.61);
 }
+
+/* My Custom Styling end */
