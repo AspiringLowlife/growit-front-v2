@@ -45,11 +45,13 @@ export default function ItemCard(props) {
                 <Card.Text>
                     {props.description}
                 </Card.Text>
+            </Card.Body>
+            <Card.Footer>
                 <Button className="btn btn-info btn-md" onClick={() => addItemToCart(props)}>Add to Cart</Button>
                 {username !== "" &&
                     <i onClick={() => { createWishListItem(props) }} className="bi bi-heart-fill give-mouse-pointer"></i>
                 }
-            </Card.Body>
+            </Card.Footer>
         </Card >
     )
 }
