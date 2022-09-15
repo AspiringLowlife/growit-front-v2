@@ -37,7 +37,6 @@ export default function MaintainCart(props) {
             <div>
                 <div>
                     <div className="row"><h1>Shopping Cart</h1></div>
-
                     {cart.map((product) => {
                         return (
                             <div className="cart-flex" style={{width :"200px", height: "200px"}}>
