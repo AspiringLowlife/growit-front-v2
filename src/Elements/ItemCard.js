@@ -3,13 +3,16 @@ import pic from '../Images/ots1.jpg'
 import { Button, Dropdown, Card } from "react-bootstrap";
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart';
 
 export default function ItemCard(props) {
+    
+    const username = useSelector((state) => state.reducerLogin.username);
+    const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-
-    function addToCart(product) {
-        props.addItemToCart(product)
+    function addItemToCart(product) {
+        dispatch(actionAddProductToCart(product));
         toast.success(props.item_Name + " has been added to your cart.")
     }
 
@@ -23,8 +26,11 @@ export default function ItemCard(props) {
                 <Card.Text>
                     {props.description}
                 </Card.Text>
-                <Button className="btn btn-info btn-md" onClick={() => addToCart(props)}>Add to Cart</Button>
+                <Button className="btn btn-info btn-md" onClick={() => addItemToCart(props)}>Add to Cart</Button>
+                {username !== "" &&
+                    <i onClick={() => {}} className="bi bi-heart"></i>
+                }
             </Card.Body>
-        </Card>
+        </Card >
     )
 }

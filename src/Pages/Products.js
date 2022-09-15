@@ -11,12 +11,6 @@ export default function Products() {
     const [products, updateProducts] = useState([])
     const [title, makeTitle] = useState("All Products")
 
-    const dispatch = useDispatch();
-
-    function addItemToCart(product) {
-        dispatch(actionAddProductToCart(product));
-    }
-
     async function getAllItems() {
         const response = await AxiosService.getAllItems()
         return response
@@ -135,7 +129,7 @@ export default function Products() {
                         return (
                             <>
                                 <ItemCard item_Name={product.item_Name} description={product.description}
-                                    imageURL={product.imageURL} addItemToCart={addItemToCart} itemID={product.itemID} Quantity={1} isFromProductPage={true} price={product.price}/>
+                                    imageURL={product.imageURL}  itemID={product.itemID} Quantity={1} isFromProductPage={true} price={product.price}/>
                             </>
                         )
                     })}

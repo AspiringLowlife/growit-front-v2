@@ -32,7 +32,7 @@ export default function AppNavBar() {
         <Navbar className='background' expand="lg">
             <Container>
                 <Navbar.Brand><Link class="navbar-brand" to="/">Grow IT</Link></Navbar.Brand>
-                <Navbar.Toggle/>
+                <Navbar.Toggle />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>
                         <Nav.Link >
@@ -43,9 +43,11 @@ export default function AppNavBar() {
                                 <Link className="nav-link" to="/Login">Login</Link>
                             </Nav.Link>
                         }
-                        <Nav.Link >
-                            <Link className="nav-link" to="/MaintainWishlist"><i className="bi bi-heart"></i></Link>
-                        </Nav.Link>
+                        {username !== "" &&
+                            <Nav.Link >
+                                <Link className="nav-link" to="/MaintainWishlist"><i className="bi bi-heart"></i></Link>
+                            </Nav.Link>
+                        }
                         {username !== "" &&
                             <Nav.Link >
                                 <Link className="nav-link" to={`/MaintainProfile/${id}`}><i className="bi bi-person"></i></Link>

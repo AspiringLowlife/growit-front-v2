@@ -50,13 +50,6 @@ export default function ElementSearchProducts() {
         setTarget(event.target);
     }
 
-    const dispatch = useDispatch();
-
-    function addItemToCart(product) {
-        dispatch(actionAddProductToCart(product));
-    }
-
-
     const popout = (
         <div ref={ref}>
             <Overlay
@@ -70,7 +63,7 @@ export default function ElementSearchProducts() {
                     <Popover.Header as="h3">Products</Popover.Header>
                     <Popover.Body>
                         {searchresults.map((product) =>
-                            <ItemCard addItemToCart={addItemToCart} item_Name={product.item_Name} description={product.description}
+                            <ItemCard item_Name={product.item_Name} description={product.description}
                                 imageURL={product.imageURL} itemID={product.itemID} Quantity={1} />
                         )}
                     </Popover.Body>
