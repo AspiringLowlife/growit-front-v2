@@ -36,5 +36,9 @@ class AxiosService{
     GetUserOrders(data){
         return axiosConfig.get(`Orders/GetUserOrders?username=${data}`);
     }
+
+    deleteWishListItem(data){
+        return axiosConfig.delete("WishList/deleteWishListItem", {data : data});
+    }
 }
 export default new AxiosService();
