@@ -307,3 +307,7 @@
 .custom-background-color{
     background-color: #e1f7e0;
 }
+
+.give-mouse-pointer{
+    cursor: pointer;
+}

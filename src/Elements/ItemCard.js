@@ -17,13 +17,22 @@ export default function ItemCard(props) {
         toast.success(props.item_Name + " has been added to your cart.")
     }
 
-    function createWishListItem(item) {
+    async function createWishListItem(item) {
         const request = {
             username: username,
             itemID: item.itemID
         }
 
-        AxiosService.createWishListItem(request);
+        await AxiosService.createWishListItem(request)
+            .then(function (response) {
+                if (response.data.status === "Fail") {
+                    toast.error(response.data.message)
+                } else {
+                    toast.info(item.item_Name + " has been added to your wish list.")
+                }
+            }).catch(function (response) {
+                toast.error(response.data)
+            })
     }
 
     return (
@@ -38,7 +47,7 @@ export default function ItemCard(props) {
                 </Card.Text>
                 <Button className="btn btn-info btn-md" onClick={() => addItemToCart(props)}>Add to Cart</Button>
                 {username !== "" &&
-                    <i onClick={() => { createWishListItem(props) }} className="bi bi-heart pointer"></i>
+                    <i onClick={() => { createWishListItem(props) }} style={{ margin: "3px" }} className="bi bi-heart give-mouse-pointer"></i>
                 }
             </Card.Body>
         </Card >
