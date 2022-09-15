@@ -309,5 +309,15 @@
 }
 
 .give-mouse-pointer{
+    position: relative;
+    left: 20px;
+    top: 10px;
+    color: red;
     cursor: pointer;
+    margin: auto;
+    font-size: 30px;
+}
+
+.give-mouse-pointer:hover{
+    color: rgba(170, 25, 32, 0.61);
 }

@@ -47,7 +47,7 @@ export default function ItemCard(props) {
                 </Card.Text>
                 <Button className="btn btn-info btn-md" onClick={() => addItemToCart(props)}>Add to Cart</Button>
                 {username !== "" &&
-                    <i onClick={() => { createWishListItem(props) }} style={{ margin: "3px" }} className="bi bi-heart give-mouse-pointer"></i>
+                    <i onClick={() => { createWishListItem(props) }} className="bi bi-heart-fill give-mouse-pointer"></i>
                 }
             </Card.Body>
         </Card >

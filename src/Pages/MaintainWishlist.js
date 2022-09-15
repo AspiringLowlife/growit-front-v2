@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import AxiosService from "../API/AxiosService";
 import '../custom.css';
+import ItemCard from "../Elements/ItemCard";
 
 export default function MaintainWishlist() {
 
@@ -36,16 +37,19 @@ export default function MaintainWishlist() {
 
     }, [DeleteWishListItem]) // Cool trick you can add functions as dependecy and if that function runs then this useffect will run aswell. 
 
-    function itemBox(imageURL, description, price, itemID) {
+    function itemBox(item) {
         return (
             <div className="my-row border border-success">
-                <img src={imageURL} alt="prodImage" />
-                <p>{description}</p>
-                <div>
-                    <h5>R {price}</h5>
-                    <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Add to Cart"></input>
-                    <Button onClick={() => { DeleteWishListItem(itemID) }}>Remove</Button>
-                </div>
+                <ItemCard
+                    item_Name={item.item_Name}
+                    description={item.description}
+                    imageURL={item.imageURL}
+                    itemID={item.itemID}
+                    Quantity={1}
+                    isFromProductPage={true}
+                    price={item.price}
+                />
+                <Button onClick={() => { DeleteWishListItem(item.itemID) }}>Remove</Button>
             </div>
         )
     }
@@ -57,7 +61,7 @@ export default function MaintainWishlist() {
                     <div className="row"><h1>Wishlist</h1></div>
                     {items.map((item) => {
                         return (
-                            itemBox(item.imageURL, item.description, item.price, item.itemID)
+                            itemBox(item)
                         )
                     })}
                 </div>
