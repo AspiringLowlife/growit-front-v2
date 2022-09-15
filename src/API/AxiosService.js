@@ -32,5 +32,9 @@ class AxiosService{
     getWishListContent(data){
         return axiosConfig.post("WishList/getWishListContent", data);
     }
+
+    GetUserOrders(data){
+        return axiosConfig.get(`Orders/GetUserOrders?username=${data}`);
+    }
 }
 export default new AxiosService();

@@ -7,16 +7,26 @@ export default function MaintainProfile() {
 
     const username = useSelector((state) => state.reducerLogin.username)
     const [userDetails, updateUserDetails] = useState({})
+    const [orders, setOrders] = useState([]);
 
     async function getUserDetails() {        
         const response = await AxiosService.getUserDetails(username)
         return response
     }
-
+    async function getUserOrders(){
+        await AxiosService.GetUserOrders(username)
+        .then(function (response){
+            setOrders(response.data)
+        })
+    }
+        
     useEffect(() => {
         getUserDetails().then((response) => {
             updateUserDetails(response.data)
         })
+
+        // getting user orders
+        getUserOrders()
     }, [])
     
     return (
@@ -24,14 +34,19 @@ export default function MaintainProfile() {
             <div className="col-group">
                 <div className="my-col">
                     <div className="row"><h1>Personal Details</h1></div>
-                    {ProfileBox("Your Name", "Bill Hetherington")}
-                    {ProfileBox("Email Address", "billh890@gmail.com")}
+                    {ProfileBox("Your Name", userDetails?.fistName)}
+                    {ProfileBox("Email Address", userDetails?.email)}
                     {ProfileBox("Username", userDetails?.userName)}
                     {ProfileBox("Password", "*******")}
-                    {ProfileBox("Delivery Details", "27 Water Avenue Summerstrand")}
+                    {ProfileBox("Delivery Details", userDetails?.address)}
                 </div>
                 <div className="my-col">
                     <div className="row"><h1>Past Orders</h1></div>
+                    {orders.map((order) => {
+                        return (
+                            OrderBox(order.ordersID, order.date_Started)
+                        )
+                    })}
                     {OrderBox("#1324", "07/12/2022")}
                 </div>
             </div>
