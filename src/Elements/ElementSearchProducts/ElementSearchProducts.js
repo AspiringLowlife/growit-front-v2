@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Form, Overlay, Popover } from 'react-bootstrap'
-import AxiosService from '../API/AxiosService';
-import ItemCard from './ItemCard';
-import './ElementSearchProducts.css'
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart';
+import { Form, Overlay, Popover } from 'react-bootstrap'
+import ItemCard from '../ItemCard';
+import '../ElementSearchProducts/ElementSearchProducts.css'
+import AxiosService from '../../API/AxiosService';
 
 export default function ElementSearchProducts() {
     const [products, updateProducts] = useState([]);

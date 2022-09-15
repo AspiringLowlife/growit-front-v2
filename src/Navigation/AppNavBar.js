@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AxiosService from '../API/AxiosService';
 import '../custom.css'
-import ElementSearchProducts from '../Elements/ElementSearchProducts';
+import ElementSearchProducts from '../Elements/ElementSearchProducts/ElementSearchProducts';
 import '../Navigation/AppNavBar.css'
 
 export default function AppNavBar() {
