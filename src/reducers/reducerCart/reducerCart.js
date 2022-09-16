@@ -4,6 +4,7 @@ import axios from 'axios';
 //Action Types Here
 export const NEW_ITEM_ADDED = 'NEW_ITEM_ADDED';
 export const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 
 //Intial State Here
 const initState = {
@@ -15,7 +16,7 @@ export default (state = initState, action) => {
     switch (action.type) {
         case NEW_ITEM_ADDED:
             state = cloneDeep(state);
-            let foundItem = state.cart.filter(item => item.itemID === action.payload.product.itemID)          
+            let foundItem = state.cart.filter(item => item.itemID === action.payload.product.itemID)
             if (foundItem.length > 0) {
                 let newCart = cloneDeep(state.cart.filter(product => product.itemID !== foundItem[0].itemID))
                 foundItem[0].Quantity = foundItem[0].Quantity + 1
@@ -29,6 +30,10 @@ export default (state = initState, action) => {
         case DELETE_ITEM_FROM_CART:
             state = cloneDeep(state);
             state.cart.pop(action.payload.product);
+            return state;
+        case CLEAR_CART:
+            state = cloneDeep(state);
+            state.cart = [];
             return state;
         default:
             return state;
@@ -47,8 +52,12 @@ export const actionDeleteItemFromCart = product => ({
     payload: { product },
 });
 
-export const thunkAddItemToCart = (product) => (dispatch, getState) =>{ 
+export const actionClearCart = () => ({
+    type: CLEAR_CART,
+});
+
+export const thunkAddItemToCart = (product) => (dispatch, getState) => {
     dispatch(actionAddProductToCart(product));
-   // You can aslo dispatch to this and do extra logic and fire off actions like this 
-   //possibly fire off even more actions
+    // You can aslo dispatch to this and do extra logic and fire off actions like this 
+    //possibly fire off even more actions
 }

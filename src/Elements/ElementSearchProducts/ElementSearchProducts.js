@@ -61,7 +61,7 @@ export default function ElementSearchProducts() {
                     <Popover.Body>
                         {searchresults.map((product) =>
                             <ItemCard item_Name={product.item_Name} description={product.description}
-                                imageURL={product.imageURL} itemID={product.itemID} Quantity={1} />
+                                imageURL={product.imageURL} itemID={product.itemID} Quantity={1} price={product.price}/>
                         )}
                     </Popover.Body>
                 </Popover>

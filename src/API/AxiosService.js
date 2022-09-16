@@ -40,5 +40,9 @@ class AxiosService{
     deleteWishListItem(data){
         return axiosConfig.delete("WishList/deleteWishListItem", {data : data});
     }
+
+    createOrder(data){
+        return axiosConfig.post("Orders/CreateOrder", data);
+    }
 }
 export default new AxiosService();
