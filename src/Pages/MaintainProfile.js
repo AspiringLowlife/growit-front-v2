@@ -35,7 +35,7 @@ export default function MaintainProfile() {
     // see documentation for features: https://www.material-react-table.com/docs/examples/basic
     const tableInstanceRef = useRef(null);
 
-    function santizeDate(date) {
+    function sanetizeDate(date) {
         return date.substring(0, 10)
     }
 
@@ -63,7 +63,16 @@ export default function MaintainProfile() {
                             header: 'Date Started',
                             muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
                             Cell: ({ cell }) => {
-                                return <div>{santizeDate(cell.getValue())}</div>
+                                return <div>{sanetizeDate(cell.getValue())}</div>
+                            },
+                        },
+                        {
+                            accessorKey: 'date_Completed', //simple recommended way to define a column
+                            header: 'Date Completed',
+                            muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            Cell: ({ cell }) => {
+                                if (cell.getValue() === null) return <div>In Progress</div>
+                                return <div>{(cell.getValue())}</div>
                             },
                         },
                     ]}
