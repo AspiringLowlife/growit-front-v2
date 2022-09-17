@@ -1,48 +1,52 @@
 import axiosConfig from "./axiosConfig";
 
-class AxiosService{
-    getAllItems(){
+class AxiosService {
+    getAllItems() {
         return axiosConfig.get("Items/GetAllItems")
     }
-    register(data){
-        return axiosConfig.post("Authenticate/register",data)
+    register(data) {
+        return axiosConfig.post("Authenticate/register", data)
     }
-    login(data){
-        return axiosConfig.post("Authenticate/login",data)
+    login(data) {
+        return axiosConfig.post("Authenticate/login", data)
     }
-    getCategoryItems(data){
+    getCategoryItems(data) {
         return axiosConfig.get(`Items/GetCategoryItems?category=${data}`)
-    }    
-    getUserDetails(data){
+    }
+    getUserDetails(data) {
         return axiosConfig.get(`User/GetUserDetails?username=${data}`)
     }
 
-    getSelectedItem(data){
+    getSelectedItem(data) {
         return axiosConfig.get(`Items/GetSelectedItem?id=${data}`);
     }
 
-    createWishListItem(data){
+    createWishListItem(data) {
         return axiosConfig.post("WishList/createWishListItem", data);
     }
 
-    getWishList(data){
+    getWishList(data) {
         return axiosConfig.post("WishList/getWishList", data);
     }
 
-    getWishListContent(data){
+    getWishListContent(data) {
         return axiosConfig.post("WishList/getWishListContent", data);
     }
 
-    GetUserOrders(data){
+    GetUserOrders(data) {
         return axiosConfig.get(`Orders/GetUserOrders?username=${data}`);
     }
 
-    deleteWishListItem(data){
-        return axiosConfig.delete("WishList/deleteWishListItem", {data : data});
+    deleteWishListItem(data) {
+        return axiosConfig.delete("WishList/deleteWishListItem", { data: data });
     }
 
-    createOrder(data){
+    createOrder(data) {
         return axiosConfig.post("Orders/CreateOrder", data);
+    }
+    UpdateUser(data) {
+        debugger
+        return axiosConfig.put(`User/UpdateUser?id=${data.id}`,data);
     }
 }
 export default new AxiosService();

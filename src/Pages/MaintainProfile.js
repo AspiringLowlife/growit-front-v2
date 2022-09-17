@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import AxiosService from "../API/AxiosService";
 import '../custom.css';
 import MaterialReactTable from 'material-react-table';
+import { toast } from "react-toastify";
+import { cloneDeep } from "lodash";
 
 export default function MaintainProfile() {
 
@@ -30,6 +32,27 @@ export default function MaintainProfile() {
         getUserOrders()
     }, [])
 
+    //this function breaks the flex inline display
+
+    function ProfileBox(title, info) {
+        return (
+            //border border-success
+            <div className="my-row border border-success ">
+                <h5>{title}:</h5>
+                <p>{info}</p>
+                <a id="link" className="sit-right" href="#">Edit</a>
+            </div>
+        )
+    }
+    function OrderBox(OrderNum, Date) {
+        return (
+            <div className="my-row border border-success">
+                <span>Order No: {OrderNum}</span>
+                <span>Date Completed: {Date}</span>
+                <a id="link" style={{ paddingLeft: 0 }}>Expand</a>
+            </div>
+        )
+    }
 
     // Showcasing table things you can do
     // see documentation for features: https://www.material-react-table.com/docs/examples/basic
@@ -39,16 +62,74 @@ export default function MaintainProfile() {
         return date.substring(0, 10)
     }
 
+
+    const handleSaveRow = async ({ exitEditingMode, row, values }) => {
+        //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
+        //send/receive api updates here
+        debugger
+        const clonedDetails = cloneDeep(userDetails);
+        clonedDetails.fistName = values.fistName
+        clonedDetails.email = values.email
+        clonedDetails.address = values.address
+        clonedDetails.userName = values.userName
+
+        await AxiosService.UpdateUser(clonedDetails).then(function (response) {
+            toast.success("User saved successfully")
+            updateUserDetails(clonedDetails);
+            exitEditingMode(); //required to exit editing mode
+        })
+            .catch(function (response) {
+                toast.error("Details could not be saved")
+            })
+    };
+
     return (
         <div class="container">
             <div className="col-group">
                 <div className="my-col">
                     <div className="row"><h1>Personal Details</h1></div>
-                    {ProfileBox("Your Name", userDetails?.fistName)}
+                    {/* {ProfileBox("Your Name", userDetails?.fistName)}
                     {ProfileBox("Email Address", userDetails?.email)}
                     {ProfileBox("Username", userDetails?.userName)}
                     {ProfileBox("Password", "*******")}
-                    {ProfileBox("Delivery Details", userDetails?.address)}
+                    {ProfileBox("Delivery Details", userDetails?.address)} */}
+                    <MaterialReactTable
+                        columns={[
+                            {
+                                accessorKey: 'fistName', //simple recommended way to define a column
+                                header: 'First Name',
+                                enableEditing: true,
+                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            },
+                            {
+                                accessorKey: 'email', //simple recommended way to define a column
+                                header: 'Email',
+                                enableEditing: true,
+                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            },
+                            {
+                                accessorKey: 'userName', //simple recommended way to define a column
+                                header: 'User Name',
+                                enableEditing: true,
+                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            },
+                            {
+                                accessorKey: 'address', //simple recommended way to define a column
+                                header: 'Address',
+                                enableEditing: true,
+                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            },
+                        ]}
+                        data={[userDetails]}
+                        editingMode="modal" //default
+                        enableEditing
+                        onEditingRowSave={handleSaveRow}
+                        //turn off a feature like so
+                        enableRowSelection={false}
+                        enableColumnOrdering={false}
+                        enableGlobalFilter={false}
+                        renderTopToolbar={false}
+                    />
                 </div>
                 <h1>Your Orders</h1>
                 <MaterialReactTable
@@ -121,27 +202,6 @@ export default function MaintainProfile() {
                     renderTopToolbar={false}
                 />
             </div>
-        </div>
-    )
-}
-//this function breaks the flex inline display
-
-function ProfileBox(title, info) {
-    return (
-        //border border-success
-        <div className="my-row border border-success ">
-            <h5>{title}:</h5>
-            <p>{info}</p>
-            <a id="link" className="sit-right" href="#">Edit</a>
-        </div>
-    )
-}
-function OrderBox(OrderNum, Date) {
-    return (
-        <div className="my-row border border-success">
-            <span>Order No: {OrderNum}</span>
-            <span>Date Completed: {Date}</span>
-            <a id="link" style={{ paddingLeft: 0 }}>Expand</a>
         </div>
     )
 }
