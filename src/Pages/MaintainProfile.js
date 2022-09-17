@@ -94,7 +94,7 @@ export default function MaintainProfile() {
                                     accessorKey: 'price', //simple recommended way to define a column
                                     header: 'Price',
                                     muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                                    Footer: () => (<strong>Total: R {row.original.itemsInOrder.reduce((accumulator, object) => accumulator + object.price, 0)}</strong>)
+                                    Footer: () => (<strong>Total: R {row.original.itemsInOrder.reduce((accumulator, object) => accumulator + (object.price * object.quantity), 0)}</strong>)
                                 },
                                 {
                                     accessorKey: 'quantity', //simple recommended way to define a column
