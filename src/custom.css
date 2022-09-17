@@ -324,4 +324,15 @@
     color: rgba(170, 25, 32, 0.61);
 }
 
+.checkout-page{
+    display: flex;
+}
+
+.product-cart-region{
+    flex: 75%;
+}
+
+.product-summary-region{
+    flex: 25%
+}
 /* My Custom Styling end */

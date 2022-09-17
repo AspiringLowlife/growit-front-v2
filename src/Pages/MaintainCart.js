@@ -16,24 +16,30 @@ export default function MaintainCart(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function itemBox(prodImage, description, price) {
+    function itemBox(prodImage, description, price, quantity) {
         return (
             <div className="my-row border border-success">
                 <img src={prodImage} alt="prodImage" />
                 <p>{description}</p>
                 <div>
                     <h5>R {price}</h5>
+                    <h5>Quantity {quantity}</h5>
                     <h5>Remove</h5>
                 </div>
             </div>
         )
     }
-    function CartStummary(noOfItems, total) {
+
+    function CartSummary() {
+
+        const total = cart.reduce((accumlator, object) => accumlator + (object.price * object.Quantity),0);
+        const quantity = cart.reduce((accumlator, object) =>  accumlator +  object.Quantity,0);
+
         return (
             <div className="border border-success">
                 <h5>Cart Summary</h5>
-                <h5>Total({noOfItems} items R {total})</h5>
-                <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Checkout"></input>
+                <h5>Total({quantity} items R {total})</h5>
+                <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Checkout"  onClick={() => { checkOut() }}></input>
             </div>
         )
     }
@@ -43,7 +49,7 @@ export default function MaintainCart(props) {
         let total = 0;
         cart.forEach(item => {
             if (item.Quantity === 1) total = total + item.price;
-            if (item.Quantity > 1){
+            if (item.Quantity > 1) {
                 let amount = item.price * item.Quantity;
                 total = total + amount;
             }
@@ -66,32 +72,35 @@ export default function MaintainCart(props) {
             items: cart,
         }
         await AxiosService.createOrder(request)
-        .then(function (response){
-            dispatch(actionClearCart());
-            navigate('/home')
-            toast.success(response.data.message)
-        })
-        .catch(function (response) {
-            toast.error(response.message)
-        })
+            .then(function (response) {
+                dispatch(actionClearCart());
+                navigate('/home')
+                toast.success(response.data.message)
+            })
+            .catch(function (response) {
+                toast.error(response.message)
+            })
     }
 
     return (
         <div>
             <div class="container">
-                <div>
-                    <div>
-                        <div className="row"><h1>Shopping Cart</h1></div>
-                        {cart.map((product) => {
-                            return (
-                                <div className="cart-flex" style={{ width: "200px", height: "200px" }}>
-                                    {itemBox(product.imageURL, product.item_Name, product.price)}
-                                    {/* {CartSummary(3, 590.50)} */}
-                                </div>
-                            )
-                        })}
+                <div className="row"><h1>Shopping Cart</h1></div>
+                <div className="checkout-page">
+                    <div className="product-cart-region">
+                        <div>
+                            {cart.map((product) => {
+                                return (
+                                    <div className="cart-flex" style={{ width: "200px", height: "200px" }}>
+                                        {itemBox(product.imageURL, product.item_Name, product.price, product.Quantity)}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
-                    <Button onClick={() => { checkOut() }}>Checkout</Button>
+                    <div className="product-summary-region">
+                        {CartSummary()}
+                    </div>
                 </div>
             </div>
             <ElementGenericModal isOpen={showModal} title={"Sorry"}>
