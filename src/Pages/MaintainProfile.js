@@ -5,6 +5,7 @@ import '../custom.css';
 import MaterialReactTable from 'material-react-table';
 import { toast } from "react-toastify";
 import { cloneDeep } from "lodash";
+import { Card, Spinner } from "react-bootstrap";
 
 export default function MaintainProfile() {
 
@@ -12,14 +13,22 @@ export default function MaintainProfile() {
     const [userDetails, updateUserDetails] = useState({})
     const [orders, setOrders] = useState([]);
 
+    //Loading States
+    const [Loading, setLoading] = useState(false);
+
     async function getUserDetails() {
         const response = await AxiosService.getUserDetails(username)
         return response
     }
     async function getUserOrders() {
+        setLoading(true);
         await AxiosService.GetUserOrders(username)
             .then(function (response) {
                 setOrders(response.data)
+                setLoading(false);
+            })
+            .catch(function (response) {
+                setLoading(false);
             })
     }
 
@@ -132,75 +141,88 @@ export default function MaintainProfile() {
                     />
                 </div>
                 <h1>Your Orders</h1>
-                <MaterialReactTable
-                    columns={[
-                        {
-                            accessorKey: 'ordersID', //simple recommended way to define a column
-                            header: 'Order ID',
-                            muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                        },
-                        {
-                            accessorKey: 'date_Started', //simple recommended way to define a column
-                            header: 'Date Started',
-                            muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                            Cell: ({ cell }) => {
-                                return <div>{sanetizeDate(cell.getValue())}</div>
-                            },
-                        },
-                        {
-                            accessorKey: 'date_Completed', //simple recommended way to define a column
-                            header: 'Date Completed',
-                            muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                            Cell: ({ cell }) => {
-                                if (cell.getValue() === null) return <div>In Progress</div>
-                                return <div>{(cell.getValue())}</div>
-                            },
-                        },
-                    ]}
-                    data={orders}
-                    renderDetailPanel={({ row }) => (
-                        <MaterialReactTable
-                            columns={[
-                                {
-                                    accessorKey: 'itemID', //simple recommended way to define a column
-                                    header: 'Item ID',
-                                    muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                                },
-                                {
-                                    accessorKey: 'item_Name', //simple recommended way to define a column
-                                    header: 'Item Name',
-                                    muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                                },
-                                {
-                                    accessorKey: 'price', //simple recommended way to define a column
-                                    header: 'Price',
-                                    muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                                    Footer: () => (<strong>Total: R {row.original.itemsInOrder.reduce((accumulator, object) => accumulator + (object.price * object.quantity), 0)}</strong>)
-                                },
-                                {
-                                    accessorKey: 'quantity', //simple recommended way to define a column
-                                    header: 'Quantity',
-                                    muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
-                                },
-                            ]}
-                            data={row.original.itemsInOrder}
+                {Loading &&
+                    <Card>
+                        <Card.Body>
+                            <Spinner animation="border" />
+                        </Card.Body>
+                    </Card>
+                }
+                {!Loading &&
+                    <Card>
+                        <Card.Body>
+                            <MaterialReactTable
+                                columns={[
+                                    {
+                                        accessorKey: 'ordersID', //simple recommended way to define a column
+                                        header: 'Order ID',
+                                        muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                    },
+                                    {
+                                        accessorKey: 'date_Started', //simple recommended way to define a column
+                                        header: 'Date Started',
+                                        muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                        Cell: ({ cell }) => {
+                                            return <div>{sanetizeDate(cell.getValue())}</div>
+                                        },
+                                    },
+                                    {
+                                        accessorKey: 'date_Completed', //simple recommended way to define a column
+                                        header: 'Date Completed',
+                                        muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                        Cell: ({ cell }) => {
+                                            if (cell.getValue() === null) return <div>In Progress</div>
+                                            return <div>{(cell.getValue())}</div>
+                                        },
+                                    },
+                                ]}
+                                data={orders}
+                                renderDetailPanel={({ row }) => (
+                                    <MaterialReactTable
+                                        columns={[
+                                            {
+                                                accessorKey: 'itemID', //simple recommended way to define a column
+                                                header: 'Item ID',
+                                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                            },
+                                            {
+                                                accessorKey: 'item_Name', //simple recommended way to define a column
+                                                header: 'Item Name',
+                                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                            },
+                                            {
+                                                accessorKey: 'price', //simple recommended way to define a column
+                                                header: 'Price',
+                                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                                Footer: () => (<strong>Total: R {row.original.itemsInOrder.reduce((accumulator, object) => accumulator + (object.price * object.quantity), 0)}</strong>)
+                                            },
+                                            {
+                                                accessorKey: 'quantity', //simple recommended way to define a column
+                                                header: 'Quantity',
+                                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                                            },
+                                        ]}
+                                        data={row.original.itemsInOrder}
 
-                            //turn off a feature like so
-                            enableRowSelection={false}
-                            enableColumnOrdering={false}
-                            enableGlobalFilter={false}
-                            renderTopToolbar={false}
-                        />
+                                        //turn off a feature like so
+                                        enableRowSelection={false}
+                                        enableColumnOrdering={false}
+                                        enableGlobalFilter={false}
+                                        renderTopToolbar={false}
+                                    />
 
-                    )}
-                    tableInstanceRef={tableInstanceRef}
+                                )}
+                                tableInstanceRef={tableInstanceRef}
 
-                    //turn off a feature like so
-                    enableRowSelection={false}
-                    enableColumnOrdering={false}
-                    enableGlobalFilter={false}
-                    renderTopToolbar={false}
-                />
+                                //turn off a feature like so
+                                enableRowSelection={false}
+                                enableColumnOrdering={false}
+                                enableGlobalFilter={false}
+                                renderTopToolbar={false}
+                            />
+                        </Card.Body>
+                    </Card>
+                }
             </div>
         </div>
     )
