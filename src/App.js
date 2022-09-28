@@ -21,7 +21,6 @@ import Topbar from './ADMIN/components/topbar/Topbar';
 import Sidebar from './ADMIN/components/sidebar/Sidebar';
 import AdminHome from './ADMIN/Pages/AdminHome/AdminHome';
 import './ADMIN/App.css'
-
 function App() {
 
   //Seeing the role of who is logged in
@@ -36,23 +35,28 @@ function App() {
           :
           <Topbar />
         }
-        {role === "Admin" &&
-          <Sidebar />
-        }
-        <Routes>
-          {/* Client Routes */}
-          <Route path='/' element={< Home />} />
-          <Route exact path='Login' element={< Login />} />
-          <Route exact path='Support' element={<Support />} />
-          <Route exact path='Register' element={<Register />} />
-          <Route exact path='MaintainCart' element={<MaintainCart />} />
-          <Route exact path='MaintainProfile/:id' element={<MaintainProfile />} />
-          <Route exact path='MaintainWishlist/:id' element={<MaintainWishlist />} />
-          <Route exact path='Products' element={<Products />} />
-          <Route path='Products/:id' element={<ProductDetails />} />
-          {/* Admin Routes */}
-          <Route exact path='admin' element={<AdminHome />} />
-        </Routes>
+        <div className={role === "Admin" ? 'admin-container' : ''}>
+          {role === "Admin" &&
+            <Sidebar />
+          }
+          <div className={role === "Admin" ? 'page-flex' : ''}>
+            <Routes>
+              {/* Client Routes */}
+              <Route path='/' element={< Home />} />
+              <Route exact path='Login' element={< Login />} />
+              <Route exact path='Support' element={<Support />} />
+              <Route exact path='Register' element={<Register />} />
+              <Route exact path='MaintainCart' element={<MaintainCart />} />
+              <Route exact path='MaintainProfile/:id' element={<MaintainProfile />} />
+              <Route exact path='MaintainWishlist/:id' element={<MaintainWishlist />} />
+              <Route exact path='Products' element={<Products />} />
+              <Route path='Products/:id' element={<ProductDetails />} />
+              {/* Admin Routes */}
+              <Route exact path='admin' element={<AdminHome />} />
+            </Routes>
+          </div>
+        </div>
+
       </BrowserRouter>
     </div>
   )
