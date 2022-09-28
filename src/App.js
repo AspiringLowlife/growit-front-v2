@@ -12,35 +12,48 @@ import MaintainProfile from './Pages/MaintainProfile';
 import MaintainWishlist from './Pages/MaintainWishlist';
 import NotificationContainer from './Notifications/NotificationsContainer';
 import Products from './Pages/Products';
-import { Provider } from 'react-redux';
-import store from './store';
+import { useSelector } from 'react-redux';
 import AppNavBar from './Navigation/AppNavBar';
 import ProductDetails from './Pages/ProductDetails';
 
+//Admin Imports
+import Topbar from './ADMIN/components/topbar/Topbar';
+import Sidebar from './ADMIN/components/sidebar/Sidebar';
+import AdminHome from './ADMIN/Pages/AdminHome/AdminHome';
+import './ADMIN/App.css'
+
 function App() {
 
+  //Seeing the role of who is logged in
+  const role = useSelector((state) => state.reducerLogin.role);
+
   return (
-    <div className='App'>
-      <Provider store={store}>
+    <div className={role !== "Admin" ? 'App' : ''}>
       <NotificationContainer />
-        <BrowserRouter>          
-          {/* <Navbar /> */}
+      <BrowserRouter>
+        {role !== "Admin" ?
           <AppNavBar />
-          {/* Added A little Navbar for you with working hamburger bar and did some condtional rendering for login button and profile page */}
-          <Routes>
-            <Route path='/' element={< Home />}/>
-            <Route exact path='Login' element={< Login />} />
-            <Route exact path='Support' element={<Support />} />
-            <Route exact path='Register' element={<Register />} />
-            <Route exact path='MaintainCart' element={<MaintainCart />} />
-            <Route exact path='MaintainProfile/:id' element={<MaintainProfile />} />
-            <Route exact path='MaintainWishlist/:id' element={<MaintainWishlist />} />
-            <Route exact path='Products' element={<Products />}/>
-            <Route path='Products/:id' element={<ProductDetails />} />
-            <Route path='*' element={<></>}/>
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+          :
+          <Topbar />
+        }
+        {role === "Admin" &&
+          <Sidebar />
+        }
+        <Routes>
+          {/* Client Routes */}
+          <Route path='/' element={< Home />} />
+          <Route exact path='Login' element={< Login />} />
+          <Route exact path='Support' element={<Support />} />
+          <Route exact path='Register' element={<Register />} />
+          <Route exact path='MaintainCart' element={<MaintainCart />} />
+          <Route exact path='MaintainProfile/:id' element={<MaintainProfile />} />
+          <Route exact path='MaintainWishlist/:id' element={<MaintainWishlist />} />
+          <Route exact path='Products' element={<Products />} />
+          <Route path='Products/:id' element={<ProductDetails />} />
+          {/* Admin Routes */}
+          <Route exact path='admin' element={<AdminHome />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

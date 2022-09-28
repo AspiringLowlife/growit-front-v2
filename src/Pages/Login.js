@@ -3,7 +3,7 @@ import '../custom.css';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {thunkLogin } from "../reducers/reducerLogin/reducerLogin";
+import { thunkLogin } from "../reducers/reducerLogin/reducerLogin";
 
 export default function Login() {
 
@@ -11,7 +11,7 @@ export default function Login() {
   //logic send user details to reducer
   const dispatch = useDispatch()
   //get user who is logged in from reducer
-  const username = useSelector((state) => state.reducerLogin.username) 
+  const username = useSelector((state) => state.reducerLogin.username)
   const role = useSelector((state) => state.reducerLogin.role)
 
   const formSubmission = (event) => {
@@ -24,8 +24,13 @@ export default function Login() {
   }
   //navigate to home page after succesful login
   useEffect(() => {
-    if (username !== "") navigate("/")
-  }, [username])
+    if (role === "Admin") {
+      navigate("/admin")
+    }
+    else if (username !== "") {
+      navigate("/")
+    }
+  }, [username, role])
 
   return (
     <div id="login">
