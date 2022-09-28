@@ -22,8 +22,8 @@ function App() {
   return (
     <div className='App'>
       <Provider store={store}>
-        <BrowserRouter>
-          <NotificationContainer />
+      <NotificationContainer />
+        <BrowserRouter>          
           {/* <Navbar /> */}
           <AppNavBar />
           {/* Added A little Navbar for you with working hamburger bar and did some condtional rendering for login button and profile page */}
