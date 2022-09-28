@@ -1,7 +1,6 @@
 import { Slider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Card, Dropdown, DropdownButton, Form, ListGroup } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import AxiosService from "../API/AxiosService";
 import ItemCard from "../Elements/ItemCard";
 import { actionAddProductToCart } from '../reducers/reducerCart/reducerCart'
@@ -91,10 +90,10 @@ export default function Products() {
                         </Card.Header>
                         <Card.Body>
                             <Slider
-                                step={100}
+                                step={50}
                                 value={value}
                                 min={0}
-                                max={10000}
+                                max={3000}
                                 onChange={handleChange}
                                 valueLabelDisplay="auto"
                                 getAriaValueText={valueLabelFormat}

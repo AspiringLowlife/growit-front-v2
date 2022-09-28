@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Button, Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import AxiosService from "../API/AxiosService";
 import '../custom.css';
 import ItemCard from "../Elements/ItemCard";
+import { actionAddProductToCart } from "../reducers/reducerCart/reducerCart";
+import pic from '../Images/ots1.jpg'
 
 export default function MaintainWishlist() {
 
@@ -37,19 +38,39 @@ export default function MaintainWishlist() {
 
     }, [DeleteWishListItem]) // Cool trick you can add functions as dependecy and if that function runs then this useffect will run aswell. 
 
+    const dispatch = useDispatch();
+    function addItemToCart(product) {
+        dispatch(actionAddProductToCart(product));
+        toast.success(product.item_Name + " has been added to your cart.")
+    }
+
+    //Might also like section for items with hot deal tag
+    const [products, updateProducts] = useState([])
+
+    async function getAllItems() {
+        const response = await AxiosService.getAllItems()
+        return response
+    }
+
+    useEffect(() => {
+        getAllItems().then((response) => {
+            updateProducts(response.data)
+
+        })
+    }, [])
+
     function itemBox(item) {
         return (
             <div className="my-row border border-success">
-                <ItemCard
-                    item_Name={item.item_Name}
-                    description={item.description}
-                    imageURL={item.imageURL}
-                    itemID={item.itemID}
-                    Quantity={1}
-                    isFromProductPage={true}
-                    price={item.price}
-                />
-                <Button onClick={() => { DeleteWishListItem(item.itemID) }}>Remove</Button>
+                <Image variant="top" height={150} width={250} src={item.imageURL} alt="Prod Image" />
+                <div className="prod-text">
+                    {item.description}
+                </div>
+                <div className="col-group">
+                    <h4> R{item.price}</h4>
+                    <Button className="btn btn-info btn-md" onClick={() => addItemToCart(item)}>Add to Cart</Button>
+                    <Button onClick={() => { DeleteWishListItem(item.itemID) }}>Remove</Button>
+                </div>
             </div>
         )
     }
@@ -67,6 +88,16 @@ export default function MaintainWishlist() {
                 </div>
                 <div className="my-col">
                     <div className="row"><h1>You might also like</h1></div>
+                    <div className="item-flex">
+                        {products.map((product) => {
+                            if (product.hotDeal === true)
+                                return (
+                                    <ItemCard item_Name={product.item_Name} description={product.description}
+                                        imageURL={product.imageURL} itemID={product.itemID} Quantity={1} isFromProductPage={true}
+                                        price={product.price} />
+                                )
+                        })}
+                    </div>
                 </div>
             </div>
         </div>

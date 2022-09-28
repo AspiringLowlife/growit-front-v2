@@ -124,8 +124,9 @@
 
 .col-group {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-direction: column;
+    justify-content: end;
 }
 
 .my-col {
@@ -135,7 +136,7 @@
 
 .my-row {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: space-around;
 }
 
@@ -163,7 +164,7 @@
     padding-top: 3px;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem;    
 }
 
 .padding-top {
@@ -336,3 +337,10 @@
     flex: 25%
 }
 /* My Custom Styling end */
+.prod-details{
+    display: flex;
+    justify-content: space-around;
+}
+.prod-text{
+    flex-basis:60%;
+}

@@ -46,6 +46,9 @@ export default function AppNavBar() {
             <Container>
                 <Navbar.Brand><Link class="navbar-brand" to="/">Grow IT</Link></Navbar.Brand>
                 <Navbar.Toggle />
+                <div className='justify-content-end'>
+                    <ElementSearchProducts />
+                </div>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>
                         <Nav.Link >
@@ -69,16 +72,11 @@ export default function AppNavBar() {
                         <Nav.Link >
                             <Link className="nav-link" to="/MaintainCart"><i className={cart.length > 0 ? `bi bi-cart pointer` : `bi bi-cart`}></i></Link>
                         </Nav.Link>
-                        <NavDropdown title="Shop" id="basic-nav-dropdown">
-                            <NavDropdown.Item>
-                                <Link class="nav-link" to="/Products">Products</Link>
-                            </NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link >
+                            <Link className="nav-link" to="/Products">Products</Link>
+                        </Nav.Link>                        
                     </Nav>
-                </Navbar.Collapse>
-                <div className='justify-content-end'>
-                    <ElementSearchProducts />
-                </div>
+                </Navbar.Collapse>               
             </Container>
         </Navbar>
     )

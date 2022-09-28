@@ -42,6 +42,7 @@ export default function ItemCard(props) {
             </Link>
             <Card.Body className='custom-background-color'>
                 <Card.Title>{props.item_Name}</Card.Title>
+                <Card.Title>R{props.price}</Card.Title>
                 <Card.Text>
                     {props.description}
                 </Card.Text>

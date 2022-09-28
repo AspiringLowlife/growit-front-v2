@@ -3,11 +3,12 @@ import '../custom.css';
 import pic from '../Images/ots1.jpg'
 import pic1 from '../Images/Pots.jpg'
 import banner from '../Images/plantBanner.jpg'
-import { Button, Dropdown, Card } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import ItemCard from "../Elements/ItemCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+
 
     const navigate = useNavigate()
 
