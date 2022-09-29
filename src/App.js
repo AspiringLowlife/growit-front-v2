@@ -20,7 +20,12 @@ import ProductDetails from './Pages/ProductDetails';
 import Topbar from './ADMIN/components/topbar/Topbar';
 import Sidebar from './ADMIN/components/sidebar/Sidebar';
 import AdminHome from './ADMIN/Pages/AdminHome/AdminHome';
+import Orders from './ADMIN/Pages/Orders/Orders';
+import ManageProducts from './ADMIN/Pages/ManageProducts/ManageProducts';
+import ManageUsers from './ADMIN/Pages/ManageUsers/ManageUsers';
 import './ADMIN/App.css'
+import AddProducts from './ADMIN/Pages/AddProducts/AddProducts';
+
 function App() {
 
   //Seeing the role of who is logged in
@@ -53,6 +58,10 @@ function App() {
               <Route path='Products/:id' element={<ProductDetails />} />
               {/* Admin Routes */}
               <Route exact path='admin' element={<AdminHome />} />
+              <Route exact path='orders' element={<Orders />} />
+              <Route exact path='manageproducts' element={<ManageProducts />} />
+              <Route exact path='users' element={<ManageUsers />} />
+              <Route exact path='addproducts' element={<AddProducts />} />
             </Routes>
           </div>
         </div>
