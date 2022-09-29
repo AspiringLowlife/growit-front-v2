@@ -47,14 +47,17 @@ class AxiosService {
 
     UpdateUser(data) {
         debugger
-        return axiosConfig.put(`User/UpdateUser?id=${data.id}`,data);
+        return axiosConfig.put(`User/UpdateUser?id=${data.id}`, data);
     }
 
     GetAllOrders() {
         return axiosConfig.get("Orders/GetAllOrders");
     }
-    CompleteOrder(data){
+    CompleteOrder(data) {
         return axiosConfig.post(`Orders/CompleteOrder?orderID=${data}`)
+    }
+    UpdateItem(data) {
+        return axiosConfig.put(`Items/UpdateItem?id=${data.itemID}`, data);  
     }
 }
 export default new AxiosService();
