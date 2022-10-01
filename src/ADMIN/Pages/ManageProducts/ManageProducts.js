@@ -5,6 +5,7 @@ import MaterialReactTable from 'material-react-table';
 import { Box } from '@mui/system';
 import ElementGenericModal from '../../../Elements/ElementGenericModal/ElementGenericModal';
 import { toast } from 'react-toastify';
+import ImageDropper from '../../components/imagedropper/ImageDropper';
 
 export default function ManageProducts() {
 
@@ -45,8 +46,39 @@ export default function ManageProducts() {
 
   };
 
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  function updateImage(image) {
+    debugger
+    setImage(image)
+  }
+
+  function uploadImage() {
+    const formData = new FormData();
+    formData.append('formFile', image);
+    formData.append('fileName', image.name);
+    formData.append('itemID', selectedProduct.itemID);
+    formData.append('item_Name', selectedProduct.item_Name);
+    formData.append('price', parseFloat(selectedProduct.price.toString().replace(".", ",")));
+    formData.append('description', selectedProduct.description);
+    formData.append('quantity_on_Hand', selectedProduct.quantity_on_Hand);
+    formData.append('category', selectedProduct.category);
+    formData.append('imageURL', selectedProduct.imageURL);
+    if (selectedProduct.hotDeal === null) {
+      formData.append('hotDeal', false);
+    } else {
+      formData.append('hotDeal', selectedProduct.hotDeal);
+    }
+    AxiosService.SaveImage(formData);
+    AxiosService.getAllItems()
+      .then(function (response) {
+        setProducts(response.data)
+      })
+  }
+
+  const [image, setImage] = useState(null);
   const [showModal, toggleShowModal] = useState(false);
-  const [selectedOrderID, setSelectedOrderID] = useState(null);
+  const [showModal2, toggleShowModal2] = useState(false);
   const tableInstanceRef = useRef(null);
 
   return (
@@ -100,8 +132,15 @@ export default function ManageProducts() {
               },
               {
                 header: 'Actions',
-                Cell: ({ cell }) => <Box>
-                  <Button onClick={() => { toggleShowModal(true) }}>Change Image</Button>
+                Cell: ({ cell, row }) => <Box>
+                  <Button className='m-1' onClick={() => {
+                    setSelectedProduct(row.original)
+                    toggleShowModal(true)
+                  }}>Change Image</Button>
+                  <Button className='m-1' variant='danger' onClick={() => {
+                    setSelectedProduct(row.original)
+                    toggleShowModal2(true)
+                  }}>Delete</Button>
                 </Box>,
                 enableEditing: false,
                 muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
@@ -119,7 +158,33 @@ export default function ManageProducts() {
         </Card.Body>
       </Card>
       <ElementGenericModal isOpen={showModal} title={"Upload a image for this product"}>
-        <Button onClick={() => toggleShowModal(!showModal)}>Cancel</Button>
+        <ImageDropper setImage={updateImage} selectedProduct={selectedProduct} />
+        <br />
+        <br />
+        <div className='d-flex justify-content-center'>
+          <Button className='m-1' onClick={() => toggleShowModal(!showModal)}>Cancel</Button>
+          <Button className='m-1' onClick={() => {
+            uploadImage();
+            toggleShowModal(!showModal)
+          }}>Update Image</Button>
+        </div>
+      </ElementGenericModal>
+      <ElementGenericModal isOpen={showModal2} title={"Are you sure you want to delete this product"}>
+
+        <div className='d-flex justify-content-center'>
+          <Button className='m-1' onClick={() => toggleShowModal2(!showModal2)}>Cancel</Button>
+          <Button className='m-1' variant='danger' onClick={() => {
+            AxiosService.DeleteItem(selectedProduct)
+              .then(function (response) {
+                toast.info(selectedProduct.item_Name + "has been deleted")
+                AxiosService.getAllItems()
+                  .then(function (response) {
+                    setProducts(response.data)
+                  })
+              })
+            toggleShowModal2(!showModal2)
+          }}>Delete Product</Button>
+        </div>
       </ElementGenericModal>
     </div>
   )

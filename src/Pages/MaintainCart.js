@@ -13,6 +13,7 @@ export default function MaintainCart(props) {
 
     const cart = useSelector((state) => state.reducerCart.cart)
     const username = useSelector((state) => state.reducerLogin.username);
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

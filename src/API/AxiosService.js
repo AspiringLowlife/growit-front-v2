@@ -57,7 +57,24 @@ class AxiosService {
         return axiosConfig.post(`Orders/CompleteOrder?orderID=${data}`)
     }
     UpdateItem(data) {
-        return axiosConfig.put(`Items/UpdateItem?id=${data.itemID}`, data);  
+        return axiosConfig.put(`Items/UpdateItem?id=${data.itemID}`, data);
+    }
+    CreateItem(data) {
+        return axiosConfig.post(`Items/CreateItem`, data);
+    }
+    DeleteItem(data) {
+        return axiosConfig.post(`Items/DeleteItem`, data);
+    }
+
+    async SaveImage(data) {
+        debugger
+        try {
+            const res = await axiosConfig.post(`Items/SaveImage`, data);
+            const test = 0;
+        }
+        catch (ex) {
+
+        }
     }
 }
 export default new AxiosService();
