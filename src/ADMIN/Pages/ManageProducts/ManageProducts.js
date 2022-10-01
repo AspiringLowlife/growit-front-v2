@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import ElementGenericModal from '../../../Elements/ElementGenericModal/ElementGenericModal';
 import { toast } from 'react-toastify';
 import ImageDropper from '../../components/imagedropper/ImageDropper';
+import { delay } from 'lodash';
 
 export default function ManageProducts() {
 
@@ -69,11 +70,14 @@ export default function ManageProducts() {
     } else {
       formData.append('hotDeal', selectedProduct.hotDeal);
     }
-    AxiosService.SaveImage(formData);
-    AxiosService.getAllItems()
+    AxiosService.SaveImage(formData)
+    .then(function (response){
+      AxiosService.getAllItems()
       .then(function (response) {
         setProducts(response.data)
       })
+    })
+    
   }
 
   const [image, setImage] = useState(null);

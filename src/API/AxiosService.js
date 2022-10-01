@@ -67,14 +67,7 @@ class AxiosService {
     }
 
     async SaveImage(data) {
-        debugger
-        try {
-            const res = await axiosConfig.post(`Items/SaveImage`, data);
-            const test = 0;
-        }
-        catch (ex) {
-
-        }
+        return axiosConfig.post(`Items/SaveImage`, data);
     }
 }
 export default new AxiosService();

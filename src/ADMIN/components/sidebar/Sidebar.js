@@ -32,21 +32,15 @@ export default function Sidebar() {
                 Home
               </li>
             </Link>
-            <Link to="/orders" className="link" onClick={() => setActiveLink('orders')}>
-              <li className={activeLink === 'orders' ? `sidebarListItem active` : `sidebarListItem`}>
-                <TrendingUp className="sidebarIcon" />
-                Orders
-              </li>
-            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link" onClick={() => setActiveLink('users')}>
-              <li className={activeLink === 'users' ? `sidebarListItem active` : `sidebarListItem`}>
-                <PermIdentity className="sidebarIcon" />
-                Users
+            <Link to="/orders" className="link" onClick={() => setActiveLink('orders')}>
+              <li className={activeLink === 'orders' ? `sidebarListItem active` : `sidebarListItem`}>
+                <TrendingUp className="sidebarIcon" />
+                Orders
               </li>
             </Link>
             <Link to="/manageproducts" className="link" onClick={() => setActiveLink('manageproducts')}>
@@ -57,7 +51,7 @@ export default function Sidebar() {
             </Link>
             <Link to="/addproducts" className="link" onClick={() => setActiveLink('addproducts')}>
               <li className={activeLink === 'addproducts' ? `sidebarListItem active` : `sidebarListItem`}>
-                <Storefront className="sidebarIcon" />
+                <AttachMoney className="sidebarIcon" />
                 Add Products
               </li>
             </Link>

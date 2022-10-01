@@ -7,10 +7,11 @@ export default function ImageDropper(props) {
 
     // This function will be triggered when the file field change
     const imageChange = (e) => {
+        debugger
         if (e.target.files && e.target.files.length > 0) {
             setSelectedImage(e.target.files[0]);
         }
-        props.setImage(selectedImage)
+        props.setImage(e.target.files[0])
     };
 
     return (
