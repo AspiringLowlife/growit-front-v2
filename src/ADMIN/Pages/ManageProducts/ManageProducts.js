@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Form } from 'react-bootstrap'
 import AxiosService from '../../../API/AxiosService';
 import MaterialReactTable from 'material-react-table';
 import { Box } from '@mui/system';
 import ElementGenericModal from '../../../Elements/ElementGenericModal/ElementGenericModal';
 import { toast } from 'react-toastify';
 import ImageDropper from '../../components/imagedropper/ImageDropper';
-import { delay } from 'lodash';
+import { cloneDeep, delay } from 'lodash';
 
 export default function ManageProducts() {
 
@@ -20,6 +20,7 @@ export default function ManageProducts() {
 
   const handleSaveRow = async ({ exitEditingMode, row, values }) => {
 
+    let findproduct = cloneDeep(products.find(product => product.itemID === row.original.itemID))
     const request =
     {
       itemID: values.itemID,
@@ -29,6 +30,7 @@ export default function ManageProducts() {
       quantity_on_Hand: values.quantity_on_Hand,
       category: values.category,
       imageURL: values.imageURL,
+      hotDeal: findproduct.hotDeal,
     }
 
     await AxiosService.UpdateItem(request)
@@ -71,13 +73,13 @@ export default function ManageProducts() {
       formData.append('hotDeal', selectedProduct.hotDeal);
     }
     AxiosService.SaveImage(formData)
-    .then(function (response){
-      AxiosService.getAllItems()
       .then(function (response) {
-        setProducts(response.data)
+        AxiosService.getAllItems()
+          .then(function (response) {
+            setProducts(response.data)
+          })
       })
-    })
-    
+
   }
 
   const [image, setImage] = useState(null);
@@ -124,6 +126,32 @@ export default function ManageProducts() {
               {
                 accessorKey: 'category', //simple recommended way to define a column
                 header: 'Category',
+                enableEditing: true,
+                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+              },
+              {
+                accessorKey: 'hotDeal', //simple recommended way to define a column
+                header: 'Hot Deal',
+                Cell: ({ cell, row }) =>
+                  <Form.Group className="mb-3">
+                    <Form.Check
+
+                      disabled
+                      checked={cell.getValue()}
+                      type="checkbox"
+                      name="hotDeal"
+                      label="Hot Deal" />
+                  </Form.Group>,
+                Edit: ({ cell, column, table, row }) =>
+                  <Form.Check
+                    onChange={(e) => {
+                      let findproduct = cloneDeep(products.find(product => product.itemID === row.original.itemID))
+                      let newList = cloneDeep(products.filter(product => product.itemID !== row.original.itemID));
+                      findproduct.hotDeal = e.target.checked;
+                      newList.push(findproduct)
+                      setProducts(newList)
+                    }}
+                    value={cell} type="checkbox" name="hotDeal" label="Hot Deal" />,
                 enableEditing: true,
                 muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
               },
