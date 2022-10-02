@@ -12,6 +12,8 @@ import '../Navigation/AppNavBar.css'
 
 export default function AppNavBar() {
     const username = useSelector((state) => state.reducerLogin.username);
+    const role = useSelector((state) => state.reducerLogin.role);
+
     const [id, setId] = useState(null);
     const [wishID, setWishId] = useState(null);
 
@@ -25,7 +27,7 @@ export default function AppNavBar() {
     }
 
     async function getWishList() {
-        if (username !== "") {
+        if (username !== "" && role !== "Admin") {
             await AxiosService.getWishList({ username })
                 .then(function (response) {
                     setWishId(response.data)

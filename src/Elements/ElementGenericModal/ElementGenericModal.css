@@ -23,7 +23,8 @@
 }
 
 .modal-content {
-    margin: 20% auto;
+    margin: auto;
+    margin-top: 10%;
     max-width: 500px;
     padding: 20px;
     animation: scale 0.5s ease;

@@ -44,9 +44,30 @@ class AxiosService {
     createOrder(data) {
         return axiosConfig.post("Orders/CreateOrder", data);
     }
+
     UpdateUser(data) {
         debugger
-        return axiosConfig.put(`User/UpdateUser?id=${data.id}`,data);
+        return axiosConfig.put(`User/UpdateUser?id=${data.id}`, data);
+    }
+
+    GetAllOrders() {
+        return axiosConfig.get("Orders/GetAllOrders");
+    }
+    CompleteOrder(data) {
+        return axiosConfig.post(`Orders/CompleteOrder?orderID=${data}`)
+    }
+    UpdateItem(data) {
+        return axiosConfig.put(`Items/UpdateItem?id=${data.itemID}`, data);
+    }
+    CreateItem(data) {
+        return axiosConfig.post(`Items/CreateItem`, data);
+    }
+    DeleteItem(data) {
+        return axiosConfig.post(`Items/DeleteItem`, data);
+    }
+
+    async SaveImage(data) {
+        return axiosConfig.post(`Items/SaveImage`, data);
     }
 }
 export default new AxiosService();
