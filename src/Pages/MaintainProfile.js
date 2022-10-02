@@ -172,7 +172,7 @@ export default function MaintainProfile() {
                                         muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
                                         Cell: ({ cell }) => {
                                             if (cell.getValue() === null) return <div>In Progress</div>
-                                            return <div>{(cell.getValue())}</div>
+                                            return <div>{sanetizeDate(cell.getValue())}</div>
                                         },
                                     },
                                 ]}
