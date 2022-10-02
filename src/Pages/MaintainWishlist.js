@@ -6,7 +6,6 @@ import AxiosService from "../API/AxiosService";
 import '../custom.css';
 import ItemCard from "../Elements/ItemCard";
 import { actionAddProductToCart } from "../reducers/reducerCart/reducerCart";
-import pic from '../Images/ots1.jpg'
 
 export default function MaintainWishlist() {
 

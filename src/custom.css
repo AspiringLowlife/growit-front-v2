@@ -154,9 +154,8 @@
 }
 
 .cart-flex {
-    display: flex;
-    padding-top: 15px;
-    justify-content: space-between;
+    display: flex;       
+   
 }
 
 .item-flex {
@@ -330,12 +329,10 @@
 }
 
 .product-cart-region{
-    flex: 75%;
+    flex-basis: 80%;
 }
 
-.product-summary-region{
-    flex: 25%
-}
+
 /* My Custom Styling end */
 .prod-details{
     display: flex;

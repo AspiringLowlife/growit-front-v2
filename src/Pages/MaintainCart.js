@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import '../custom.css';
-import { Button } from "react-bootstrap";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { Button, Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import AxiosService from "../API/AxiosService";
 import ElementGenericModal from "../Elements/ElementGenericModal/ElementGenericModal";
 import { useNavigate } from "react-router-dom";
 import { actionClearCart } from "../reducers/reducerCart/reducerCart";
 import { toast } from "react-toastify";
-
 
 export default function MaintainCart(props) {
 
@@ -16,15 +15,17 @@ export default function MaintainCart(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function itemBox(prodImage, description, price, quantity) {
+    function itemBox(item) {
         return (
             <div className="my-row border border-success">
-                <img src={prodImage} alt="prodImage" />
-                <p>{description}</p>
-                <div>
-                    <h5>R {price}</h5>
-                    <h5>Quantity {quantity}</h5>
-                    <h5>Remove</h5>
+                <Image variant="top" height={150} width={250} src={item.imageURL} alt="Prod Image" />
+                <div className="prod-text">
+                    {item.description}
+                </div>
+                <div className="col-group">
+                    <h4> R{item.price}</h4>
+                    <Button className="btn btn-info btn-md" onClick={() => { }}>Quantity</Button>
+                    <Button onClick={() => { }}>Remove</Button>
                 </div>
             </div>
         )
@@ -32,14 +33,14 @@ export default function MaintainCart(props) {
 
     function CartSummary() {
 
-        const total = cart.reduce((accumlator, object) => accumlator + (object.price * object.Quantity),0);
-        const quantity = cart.reduce((accumlator, object) =>  accumlator +  object.Quantity,0);
+        const total = cart.reduce((accumlator, object) => accumlator + (object.price * object.Quantity), 0);
+        const quantity = cart.reduce((accumlator, object) => accumlator + object.Quantity, 0);
 
         return (
             <div className="border border-success">
                 <h5>Cart Summary</h5>
                 <h5>Total({quantity} items R {total})</h5>
-                <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Checkout"  onClick={() => { checkOut() }}></input>
+                <input type="submit" name="submit" class="btn btn-info btn-md" id="but" value="Checkout" onClick={() => { checkOut() }}></input>
             </div>
         )
     }
@@ -83,26 +84,21 @@ export default function MaintainCart(props) {
     }
 
     return (
-        <div>
-            <div class="container">
-                <div className="row"><h1>Shopping Cart</h1></div>
-                <div className="checkout-page">
-                    <div className="product-cart-region">
-                        <div>
-                            {cart.map((product) => {
-                                return (
-                                    <div className="cart-flex" style={{ width: "200px", height: "200px" }}>
-                                        {itemBox(product.imageURL, product.item_Name, product.price, product.Quantity)}
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div className="product-summary-region">
-                        {CartSummary()}
-                    </div>
+        <div class="container">
+            <div className="col-group">
+                <div className="my-col">
+                    <div className="row"><h1>Shopping Cart</h1></div>
+                    {cart.map((product) => {
+                        return (
+                            itemBox(product)
+                        )
+                    })}
                 </div>
             </div>
+            <div className="my-col">
+                {CartSummary()}
+            </div>
+
             <ElementGenericModal isOpen={showModal} title={"Sorry"}>
                 <h1>Please login to complete your order</h1>
                 <Button onClick={() => toggleShowModal(!showModal)}>Cancel</Button>
