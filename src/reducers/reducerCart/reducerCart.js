@@ -40,18 +40,15 @@ export default (state = initState, action) => {
             return state;
         case UPDATE_ITEM_QUANTITY:
             state = cloneDeep(state);
-            let foundItem1 = state.cart.filter(item => item.itemID === action.payload.product.itemID)
-            if (foundItem1.length > 0) {
-                let newCart = cloneDeep(state.cart.filter(product => product.itemID !== foundItem1[0].itemID))
-                foundItem1[0].Quantity = foundItem1[0].Quantity - 1
-               
-                debugger
-                if (!foundItem1[0].Quantity === 0) {
-                    newCart.push(foundItem1[0])
-                } 
-            }
-            else {
-                state.cart.push(action.payload.product);
+            var findItem = state.cart.find(item => item.itemID === action.payload.product.itemID);
+
+            if (findItem) {
+                let newCart = cloneDeep(state.cart.filter(product => product.itemID !== findItem.itemID))
+                findItem.Quantity -= 1;
+                if (findItem.Quantity !== 0) {
+                    newCart.push(findItem);
+                }
+                state.cart = newCart;
             }
             return state;
         default:
