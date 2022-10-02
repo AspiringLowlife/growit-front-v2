@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AxiosService from '../../../API/AxiosService';
 import ImageDropper from "../../components/imagedropper/ImageDropper"
@@ -12,6 +13,10 @@ export default function AddProducts() {
   function submitForm(event) {
     debugger
     event.preventDefault();
+    if (event.target.elements.category.value === "Choose A Category"){
+      toast.error("Please Select a category");
+      return
+    }
     let request ={
       item_Name: event.target.elements.item_Name.value,
       price: event.target.elements.price.value,
@@ -28,12 +33,16 @@ export default function AddProducts() {
           setNewProduct(response.data);
         })
         .catch(function (response) {
-
+          toast.success("Unable to Add product")
+          return
         })
     }else{
       toast.error("Image file needed for product")
+      return
     }
-    uploadImage(newProduct)
+    uploadImage(newProduct);
+    setImage(null)
+    event.target.reset();
   }
 
   function uploadImage(item) {
@@ -85,7 +94,7 @@ export default function AddProducts() {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label for="category" >Category</Form.Label>
-            <Form.Select name="category" >
+            <Form.Select required name="category" >
               <option>Choose A Category</option>
               <option>Plant</option>
               <option>Soil</option>

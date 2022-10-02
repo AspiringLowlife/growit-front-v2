@@ -55,6 +55,12 @@ export default function Sidebar() {
                 Add Products
               </li>
             </Link>
+            <Link to="/managetickets" className="link" onClick={() => setActiveLink('managetickets')}>
+              <li className={activeLink === 'managetickets' ? `sidebarListItem active` : `sidebarListItem`}>
+                <DynamicFeed className="sidebarIcon" />
+                Tickets
+              </li>
+            </Link>
             <li className={activeLink === '' ? `sidebarListItem active` : `sidebarListItem`}>
               <BarChart className="sidebarIcon" />
               Reports
