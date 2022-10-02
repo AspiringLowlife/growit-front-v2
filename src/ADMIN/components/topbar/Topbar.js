@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { actionLogOut } from "../../../reducers/reducerLogin/reducerLogin";
 import { useNavigate } from "react-router-dom";
-
+import logo from '../../../Images/logo.png'
 export default function Topbar() {
 
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">Grow!T</span>
+          <span className="logo"><img style={{width: '50px', width: "250px"}} src={logo}/></span>
         </div>
         <div className="topRight">
           <div>
