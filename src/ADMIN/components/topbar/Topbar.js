@@ -26,13 +26,6 @@ export default function Topbar() {
             <NotificationsNone />
             <span className="topIconBadge">2</span>
           </div>
-          <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Settings />
-          </div>
           <img src="https://localhost:5000/images/OrchidPlant.png" alt="" className="topAvatar" />
         </div>
       </div>
