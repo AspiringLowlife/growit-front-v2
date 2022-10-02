@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import AxiosService from "../API/AxiosService";
 import ElementGenericModal from "../Elements/ElementGenericModal/ElementGenericModal";
 import { useNavigate } from "react-router-dom";
-import { actionClearCart } from "../reducers/reducerCart/reducerCart";
+import { actionAddProductToCart, actionClearCart, actionDeleteItemFromCart, actionUpdateQuantity } from "../reducers/reducerCart/reducerCart";
 import { toast } from "react-toastify";
 
 export default function MaintainCart(props) {
 
     const cart = useSelector((state) => state.reducerCart.cart)
     const username = useSelector((state) => state.reducerLogin.username);
-    
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -25,8 +25,11 @@ export default function MaintainCart(props) {
                 </div>
                 <div className="col-group">
                     <h4> R{item.price}</h4>
+
                     <Button className="btn btn-info btn-md" onClick={() => { }}>Quantity</Button>
-                    <Button onClick={() => { }}>Remove</Button>
+                    <Button onClick={() => { dispatch(actionDeleteItemFromCart(item)) }}>Remove</Button>
+                    <Button onClick={() => { dispatch(actionUpdateQuantity(item)) }}>-</Button>
+                    <h2>{item.Quantity}</h2><Button onClick={() => { dispatch(actionAddProductToCart(item)); }}>+</Button>
                 </div>
             </div>
         )

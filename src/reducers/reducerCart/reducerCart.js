@@ -5,6 +5,7 @@ import axios from 'axios';
 export const NEW_ITEM_ADDED = 'NEW_ITEM_ADDED';
 export const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART';
 export const CLEAR_CART = 'CLEAR_CART';
+export const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY';
 
 //Intial State Here
 const initState = {
@@ -28,12 +29,30 @@ export default (state = initState, action) => {
             }
             return state;
         case DELETE_ITEM_FROM_CART:
+            debugger
             state = cloneDeep(state);
-            state.cart.pop(action.payload.product);
+            let newCart = state.cart.filter(product => product.itemID !== action.payload.product.itemID)
+            state.cart = newCart
             return state;
         case CLEAR_CART:
             state = cloneDeep(state);
             state.cart = [];
+            return state;
+        case UPDATE_ITEM_QUANTITY:
+            state = cloneDeep(state);
+            let foundItem1 = state.cart.filter(item => item.itemID === action.payload.product.itemID)
+            if (foundItem1.length > 0) {
+                let newCart = cloneDeep(state.cart.filter(product => product.itemID !== foundItem1[0].itemID))
+                foundItem1[0].Quantity = foundItem1[0].Quantity - 1
+               
+                debugger
+                if (!foundItem1[0].Quantity === 0) {
+                    newCart.push(foundItem1[0])
+                } 
+            }
+            else {
+                state.cart.push(action.payload.product);
+            }
             return state;
         default:
             return state;
@@ -54,6 +73,11 @@ export const actionDeleteItemFromCart = product => ({
 
 export const actionClearCart = () => ({
     type: CLEAR_CART,
+});
+
+export const actionUpdateQuantity = product => ({
+    type: UPDATE_ITEM_QUANTITY,
+    payload: { product },
 });
 
 export const thunkAddItemToCart = (product) => (dispatch, getState) => {
