@@ -9,6 +9,7 @@ import AxiosService from '../API/AxiosService';
 import '../custom.css'
 import ElementSearchProducts from '../Elements/ElementSearchProducts/ElementSearchProducts';
 import '../Navigation/AppNavBar.css'
+import logo from '../Images/logo.png';
 
 export default function AppNavBar() {
     const username = useSelector((state) => state.reducerLogin.username);
@@ -46,7 +47,7 @@ export default function AppNavBar() {
     return (
         <Navbar className='background' expand="lg">
             <Container>
-                <Navbar.Brand><Link class="navbar-brand" to="/">Grow IT</Link></Navbar.Brand>
+                <Navbar.Brand><Link class="navbar-brand" to="/"><img style={{width: '60px', width: "250px"}} src={logo}/></Link></Navbar.Brand>
                 <Navbar.Toggle />
                 <div className='justify-content-end'>
                     <ElementSearchProducts />
