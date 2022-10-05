@@ -39,9 +39,7 @@ export default function MaintainProfile() {
 
         // getting user orders
         getUserOrders()
-    }, [])
-
-    //this function breaks the flex inline display
+    }, [])  
 
     function ProfileBox(title, info) {
         return (
@@ -78,6 +76,7 @@ export default function MaintainProfile() {
         debugger
         const clonedDetails = cloneDeep(userDetails);
         clonedDetails.fistName = values.fistName
+        clonedDetails.lastName=values.lastName
         clonedDetails.email = values.email
         clonedDetails.address = values.address
         clonedDetails.userName = values.userName
@@ -111,6 +110,12 @@ export default function MaintainProfile() {
                                 muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
                             },
                             {
+                                accessorKey: 'lastName', //simple recommended way to define a column
+                                header: 'Last Name',
+                                enableEditing: true,
+                                muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+                            },
+                            {
                                 accessorKey: 'email', //simple recommended way to define a column
                                 header: 'Email',
                                 enableEditing: true,
@@ -119,7 +124,7 @@ export default function MaintainProfile() {
                             {
                                 accessorKey: 'userName', //simple recommended way to define a column
                                 header: 'User Name',
-                                enableEditing: true,
+                                enableEditing: false,
                                 muiTableHeadCellProps: { sx: { color: 'green' } }, //custom props
                             },
                             {

@@ -25,11 +25,14 @@ export default function MaintainCart(props) {
                 </div>
                 <div className="col-group">
                     <h4> R{item.price}</h4>
+                    <Button class="btn btn-info btn-md" onClick={() => { dispatch(actionDeleteItemFromCart(item)) }}>Remove</Button>
+                    <div className="prod-details">
+                        {/* <Button onClick={() => { dispatch(actionUpdateQuantity(item)) }}>-</Button> */}
+                        <i class="bi bi-dash-circle" onClick={() => { dispatch(actionUpdateQuantity(item)) }}></i>
+                        <h2>{item.Quantity}</h2><i class="bi bi-plus-circle" onClick={() => { dispatch(actionAddProductToCart(item)); }}></i>
+                        {/* <Button onClick={() => { dispatch(actionAddProductToCart(item)); }}>+</Button> */}
+                    </div>
 
-                    <Button className="btn btn-info btn-md" onClick={() => { }}>Quantity</Button>
-                    <Button onClick={() => { dispatch(actionDeleteItemFromCart(item)) }}>Remove</Button>
-                    <Button onClick={() => { dispatch(actionUpdateQuantity(item)) }}>-</Button>
-                    <h2>{item.Quantity}</h2><Button onClick={() => { dispatch(actionAddProductToCart(item)); }}>+</Button>
                 </div>
             </div>
         )
