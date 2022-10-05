@@ -28,8 +28,8 @@ export default function MaintainCart(props) {
                     <Button class="btn btn-info btn-md" onClick={() => { dispatch(actionDeleteItemFromCart(item)) }}>Remove</Button>
                     <div className="prod-details">
                         {/* <Button onClick={() => { dispatch(actionUpdateQuantity(item)) }}>-</Button> */}
-                        <i class="bi bi-dash-circle" onClick={() => { dispatch(actionUpdateQuantity(item)) }}></i>
-                        <h2>{item.Quantity}</h2><i class="bi bi-plus-circle" onClick={() => { dispatch(actionAddProductToCart(item)); }}></i>
+                        <i class="bi bi-dash-circle" style={{cursor : 'pointer'}} onClick={() => { dispatch(actionUpdateQuantity(item)) }}></i>
+                        <h2>{item.Quantity}</h2><i class="bi bi-plus-circle" style={{cursor : 'pointer'}} onClick={() => { dispatch(actionAddProductToCart(item)); }}></i>
                         {/* <Button onClick={() => { dispatch(actionAddProductToCart(item)); }}>+</Button> */}
                     </div>
 
@@ -65,6 +65,10 @@ export default function MaintainCart(props) {
         return total;
     }
 
+    function sortCart(){
+        return cart.sort((a, b) => a.item_Name > b.item_Name ? 1 : -1)
+    }
+
     const [showModal, toggleShowModal] = useState(false);
 
     async function checkOut() {
@@ -95,7 +99,7 @@ export default function MaintainCart(props) {
             <div className="col-group">
                 <div className="my-col">
                     <div className="row"><h1>Shopping Cart</h1></div>
-                    {cart.map((product) => {
+                    {sortCart().map((product) => {
                         return (
                             itemBox(product)
                         )
