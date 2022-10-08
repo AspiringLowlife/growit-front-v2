@@ -47,7 +47,7 @@ export default function AppNavBar() {
     return (
         <Navbar className='background' expand="lg">
             <Container>
-                <Navbar.Brand><Link class="navbar-brand" to="/"><img style={{width: '60px', width: "250px"}} src={logo}/></Link></Navbar.Brand>
+                <Navbar.Brand><Link class="navbar-brand" to="/">Grow IT</Link></Navbar.Brand>
                 <Navbar.Toggle />
                 <div className='justify-content-end'>
                     <ElementSearchProducts />
