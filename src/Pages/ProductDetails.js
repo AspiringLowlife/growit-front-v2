@@ -18,7 +18,7 @@ export default function ProductDetails() {
   return (
     <div className='body'>      
       <div className="prod-details">
-        <ItemCard item_Name={product.item_Name} description={product.description}
+        <ItemCard disableNav={true} item_Name={product.item_Name} description={product.description}
           imageURL={product.imageURL} itemID={product.itemID} Quantity={1} isFromProductPage={true} price={product.price} />
         <div className='prod-text'>
           <h1>Description</h1>

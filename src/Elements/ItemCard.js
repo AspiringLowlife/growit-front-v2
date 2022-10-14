@@ -37,9 +37,14 @@ export default function ItemCard(props) {
 
     return (
         <Card style={{ width: '18rem' }}>
-            <Link to={props.isFromProductPage ? `${props.itemID}` : `Products/${props.itemID}`}>
+            {props.disableNav === true ?
                 <Card.Img variant="top" height={200} src={props.imageURL} alt="Prod Image" />
-            </Link>
+                :
+                <Link to={props.isFromProductPage ? `${props.itemID}` : `Products/${props.itemID}`}>
+                    <Card.Img variant="top" height={200} src={props.imageURL} alt="Prod Image" />
+                </Link>
+            }
+
             <Card.Body className='custom-background-color'>
                 <Card.Title>{props.item_Name}</Card.Title>
                 <Card.Title>R{props.price}</Card.Title>
