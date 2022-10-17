@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +16,14 @@ export default function MaintainWishlist() {
     async function getWishListContent() {
         return await AxiosService.getWishListContent({ username })
             .then(function (response) {
-                setItems(response.data)
+                let tempItems=response.data
+                let newItems=[]
+                for(let item of tempItems){
+                    let newItem=cloneDeep(item)
+                    newItem.Quantity=1
+                    newItems.push(newItem)
+                }
+                setItems(newItems)
             })
     }
 
@@ -39,6 +47,7 @@ export default function MaintainWishlist() {
 
     const dispatch = useDispatch();
     function addItemToCart(product) {
+        //add the product with a quantity
         dispatch(actionAddProductToCart(product));
         toast.success(product.item_Name + " has been added to your cart.")
     }
@@ -54,7 +63,6 @@ export default function MaintainWishlist() {
     useEffect(() => {
         getAllItems().then((response) => {
             updateProducts(response.data)
-
         })
     }, [])
 
