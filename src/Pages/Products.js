@@ -1,4 +1,5 @@
 import { Slider } from "@mui/material";
+import { entries } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Card, Dropdown, DropdownButton, Form, ListGroup } from "react-bootstrap";
 import AxiosService from "../API/AxiosService";
@@ -69,6 +70,19 @@ export default function Products() {
         return products.filter(product => (product.price > value[0] && product.price < value[1]))
     }
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show')
+            }else{
+                entry.target.classList.remove('show')
+            }
+        })
+    })
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
+
     return (
         <div className="flex-products-page">
             <div className="filter-region custom-background-color">
@@ -123,13 +137,13 @@ export default function Products() {
                 <div>
                     <h1 style={{ borderBottom: "1px solid black", margin: "1rem" }}>{title}</h1>
                 </div>
-                <div className="item-flex">
+                <div className="item-flex hidden">
                     {getFilterProducts().map((product) => {
                         return (
-                            <>
+                            <div className="hidden" style={{transitionDelay : }}>
                                 <ItemCard item_Name={product.item_Name} description={product.description}
                                     imageURL={product.imageURL}  itemID={product.itemID} Quantity={1} isFromProductPage={true} price={product.price}/>
-                            </>
+                            </div>
                         )
                     })}
                 </div>
